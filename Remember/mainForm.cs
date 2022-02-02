@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.Sqlite;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,16 @@ namespace Remember
 {
     public partial class mainForm : Form
     {
-        public mainForm()
+        SqliteConnection Conn = new SqliteConnection();
+
+        public mainForm(SqliteConnection connection)
         {
+            Conn = connection;
             InitializeComponent();
         }
+
+        SqliteCommand cmd = new SqliteCommand();
+
+
     }
 }

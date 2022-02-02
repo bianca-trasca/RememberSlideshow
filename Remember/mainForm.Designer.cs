@@ -36,6 +36,9 @@
             this.usrMainFormTextBox = new System.Windows.Forms.TextBox();
             this.pwMainFormTextBox = new System.Windows.Forms.TextBox();
             this.showPwMainFormCheckBox = new System.Windows.Forms.CheckBox();
+            this.logInMainFormButton = new System.Windows.Forms.Button();
+            this.signUpMainFormButton = new System.Windows.Forms.Button();
+            this.signUpMainFormLable = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // welcomeLable
@@ -124,6 +127,40 @@
             this.showPwMainFormCheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.showPwMainFormCheckBox.UseVisualStyleBackColor = false;
             // 
+            // logInMainFormButton
+            // 
+            this.logInMainFormButton.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.logInMainFormButton.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.logInMainFormButton.Location = new System.Drawing.Point(471, 320);
+            this.logInMainFormButton.Name = "logInMainFormButton";
+            this.logInMainFormButton.Size = new System.Drawing.Size(75, 23);
+            this.logInMainFormButton.TabIndex = 7;
+            this.logInMainFormButton.Text = "Log in";
+            this.logInMainFormButton.UseVisualStyleBackColor = false;
+            // 
+            // signUpMainFormButton
+            // 
+            this.signUpMainFormButton.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.signUpMainFormButton.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.signUpMainFormButton.Location = new System.Drawing.Point(456, 447);
+            this.signUpMainFormButton.Name = "signUpMainFormButton";
+            this.signUpMainFormButton.Size = new System.Drawing.Size(75, 23);
+            this.signUpMainFormButton.TabIndex = 8;
+            this.signUpMainFormButton.Text = "Sign up";
+            this.signUpMainFormButton.UseVisualStyleBackColor = false;
+            // 
+            // signUpMainFormLable
+            // 
+            this.signUpMainFormLable.AutoSize = true;
+            this.signUpMainFormLable.BackColor = System.Drawing.Color.Transparent;
+            this.signUpMainFormLable.Font = new System.Drawing.Font("Verdana", 8F);
+            this.signUpMainFormLable.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.signUpMainFormLable.Location = new System.Drawing.Point(333, 422);
+            this.signUpMainFormLable.Name = "signUpMainFormLable";
+            this.signUpMainFormLable.Size = new System.Drawing.Size(320, 13);
+            this.signUpMainFormLable.TabIndex = 9;
+            this.signUpMainFormLable.Text = "If you don\'t have an account, you can sign up for free!";
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -132,6 +169,9 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(962, 540);
+            this.Controls.Add(this.signUpMainFormLable);
+            this.Controls.Add(this.signUpMainFormButton);
+            this.Controls.Add(this.logInMainFormButton);
             this.Controls.Add(this.showPwMainFormCheckBox);
             this.Controls.Add(this.pwMainFormTextBox);
             this.Controls.Add(this.usrMainFormTextBox);
@@ -159,6 +199,9 @@
         private System.Windows.Forms.TextBox usrMainFormTextBox;
         private System.Windows.Forms.TextBox pwMainFormTextBox;
         private System.Windows.Forms.CheckBox showPwMainFormCheckBox;
+        private System.Windows.Forms.Button logInMainFormButton;
+        private System.Windows.Forms.Button signUpMainFormButton;
+        private System.Windows.Forms.Label signUpMainFormLable;
     }
 }
 
