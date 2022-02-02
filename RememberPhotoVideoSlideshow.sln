@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Remember", "Remember\Remember.csproj", "{5FE87CB3-858E-45CF-BC4E-178165C7497E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5FE87CB3-858E-45CF-BC4E-178165C7497E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FE87CB3-858E-45CF-BC4E-178165C7497E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FE87CB3-858E-45CF-BC4E-178165C7497E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FE87CB3-858E-45CF-BC4E-178165C7497E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E56A9B90-A5C8-44C5-B3DD-6339EA9BF475}
+	EndGlobalSection
+EndGlobal
