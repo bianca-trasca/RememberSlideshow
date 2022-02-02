@@ -126,6 +126,7 @@
             this.showPwMainFormCheckBox.Text = "Show Password";
             this.showPwMainFormCheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.showPwMainFormCheckBox.UseVisualStyleBackColor = false;
+            this.showPwMainFormCheckBox.CheckedChanged += new System.EventHandler(this.showPwMainFormCheckBox_CheckedChanged);
             // 
             // logInMainFormButton
             // 
@@ -137,6 +138,7 @@
             this.logInMainFormButton.TabIndex = 7;
             this.logInMainFormButton.Text = "Log in";
             this.logInMainFormButton.UseVisualStyleBackColor = false;
+            this.logInMainFormButton.Click += new System.EventHandler(this.logInMainFormButton_Click);
             // 
             // signUpMainFormButton
             // 
@@ -148,6 +150,7 @@
             this.signUpMainFormButton.TabIndex = 8;
             this.signUpMainFormButton.Text = "Sign up";
             this.signUpMainFormButton.UseVisualStyleBackColor = false;
+            this.signUpMainFormButton.Click += new System.EventHandler(this.signUpMainFormButton_Click);
             // 
             // signUpMainFormLable
             // 
