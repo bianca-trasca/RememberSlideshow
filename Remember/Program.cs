@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.Sqlite;
+using System;
 using System.Windows.Forms;
 
 namespace Remember
@@ -8,7 +9,7 @@ namespace Remember
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
-        //[STAThread]
+        [STAThread]
         static void Main()
         {
             string pathToDB = @"C:\Users\byanc\OneDrive\Desktop\Licenta\Repos\RememberPhotoVideoSlideshow\usersDataBase.db";

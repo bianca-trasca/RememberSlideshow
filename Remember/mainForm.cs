@@ -38,7 +38,7 @@ namespace Remember
 
                 if (reader.Read() == true)
                 {
-                    //new dashboard().Show();
+                    new dashboard().Show();
                     this.Hide();
                 }
                 else

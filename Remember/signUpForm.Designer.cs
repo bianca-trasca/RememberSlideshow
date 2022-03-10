@@ -183,6 +183,7 @@
             this.Controls.Add(this.pwMainFormLable);
             this.Controls.Add(this.usrMainFormLable);
             this.Controls.Add(this.signUpSignUpFormLable);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "signUpForm";
             this.Text = "signUpForm";
             this.ResumeLayout(false);
