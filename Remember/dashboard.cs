@@ -23,7 +23,7 @@ namespace Remember
         Boolean opened = false;
 
 
-        public void openImage()
+        public void OpenImage()
         {
             DialogResult dialog = openFileDialog1.ShowDialog();
             if(dialog == DialogResult.OK)
@@ -34,7 +34,7 @@ namespace Remember
             }
         }
 
-        public void saveImage()
+        public void SaveImage()
         {
             if(opened)
             {
@@ -63,14 +63,28 @@ namespace Remember
             }
         }
 
+        public void ClearFilterOfCurrentPhoto()
+        {
+            if (opened)
+            {
+                file = Image.FromFile(openFileDialog1.FileName);
+                pictureBox1.Image = file;
+            }
+        }
+
         private void browseBtn_Click(object sender, EventArgs e)
         {
-            openImage();
+            OpenImage();
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
         {
-            saveImage();
+            SaveImage();
+        }
+
+        private void clearBtn_Click(object sender, EventArgs e)
+        {
+            ClearFilterOfCurrentPhoto();
         }
     }
 }
