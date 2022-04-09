@@ -23,16 +23,16 @@ namespace Remember
         Boolean opened = false;
 
 
-        public void OpenImage()
-        {
-            DialogResult dialog = openFileDialog1.ShowDialog();
-            if(dialog == DialogResult.OK)
-            {
-                file = Image.FromFile(openFileDialog1.FileName);
-                pictureBox1.Image = file;
-                opened = true;
-            }
-        }
+        //public void OpenImage()
+        //{
+        //    DialogResult dialog = openFileDialog1.ShowDialog();
+        //    if(dialog == DialogResult.OK)
+        //    {
+        //        file = Image.FromFile(openFileDialog1.FileName);
+        //        pictureBox.Image = file;
+        //        opened = true;
+        //    }
+        //}
 
         public void SaveImage()
         {
@@ -54,7 +54,7 @@ namespace Remember
                             format = ImageFormat.Bmp;
                             break;
                     }
-                    pictureBox1.Image.Save(saveFileDialog.FileName, format);
+                    pictureBox.Image.Save(saveFileDialog.FileName, format);
                 }
             }
             else
@@ -63,18 +63,9 @@ namespace Remember
             }
         }
 
-        public void ClearFilterOfCurrentPhoto()
-        {
-            if (opened)
-            {
-                file = Image.FromFile(openFileDialog1.FileName);
-                pictureBox1.Image = file;
-            }
-        }
-
         private void browseBtn_Click(object sender, EventArgs e)
         {
-            OpenImage();
+            OpenImages();
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
@@ -82,9 +73,65 @@ namespace Remember
             SaveImage();
         }
 
-        private void clearBtn_Click(object sender, EventArgs e)
+        // https://www.youtube.com/watch?v=d0AHKq7lDF4
+        private void OpenImages()
         {
-            ClearFilterOfCurrentPhoto();
+            OpenFileDialog ofDialog = new OpenFileDialog();
+            ofDialog.Title = "Select images";
+            ofDialog.Multiselect = true;
+            ofDialog.Filter = "JPG|*.jpg|JPEG|*.jpeg|PNG|*.png";
+            DialogResult dr = ofDialog.ShowDialog();
+
+            if (dr == System.Windows.Forms.DialogResult.OK)
+            {
+                string[] nameList = ofDialog.FileNames;
+                int x = 20;
+                int y = 20;
+                int maxHeight = -1;
+
+                foreach (string filename in nameList)
+                {
+                    PictureBox picBox = new PictureBox();
+                    picBox.Image = Image.FromFile(filename);
+                    picBox.Location = new Point(x, y);
+                    picBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                    x += picBox.Width + 10;
+                    maxHeight = Math.Max(picBox.Height, maxHeight);
+
+                    if(x > this.ClientSize.Width)
+                    {
+                        x = 20;
+                        y += maxHeight + 10;
+                    }
+                
+                    this.panel.Controls.Add(picBox);
+                }
+            }
+        }
+
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if (treeView1.SelectedNode.Text == "Usercontrol1")
+            {
+                panel.Controls.Clear();
+                panel.Visible = true;
+                UserControl1 usr1 = new UserControl1();
+                usr1.Show();
+                panel1.Controls.Add(usr1);
+            }
+            if (treeView1.SelectedNode.Text == "Usercontrol2")
+            {
+                panel.Controls.Clear();
+                panel.Visible = true;
+                UserControl2 usr2 = new UserControl2();
+                usr2.Show();
+                panel1.Controls.Add(usr2);
+            }
+            if (treeView1.SelectedNode.Text == "Root")
+            {
+                panel.Controls.Clear();
+                panel.Visible = false;
+            }
         }
     }
 }
