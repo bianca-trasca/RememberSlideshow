@@ -14,6 +14,8 @@ namespace Remember
 {
     public partial class dashboard : Form
     {
+        List<string> longNameList = new List<string>();
+
         public dashboard()
         {
             InitializeComponent();
@@ -54,7 +56,7 @@ namespace Remember
                             format = ImageFormat.Bmp;
                             break;
                     }
-                    pictureBox.Image.Save(saveFileDialog.FileName, format);
+                    //pictureBox.Image.Save(saveFileDialog.FileName, format);
                 }
             }
             else
@@ -68,11 +70,12 @@ namespace Remember
             OpenImages();
         }
 
-        private void saveBtn_Click(object sender, EventArgs e)
+        private void createSL_Click(object sender, EventArgs e)
         {
-            SaveImage();
+            //SaveImage();
+            // Create SLideShow
         }
-
+        
         // https://www.youtube.com/watch?v=d0AHKq7lDF4
         private void OpenImages()
         {
@@ -84,59 +87,65 @@ namespace Remember
 
             if (dr == System.Windows.Forms.DialogResult.OK)
             {
-                string[] nameList = ofDialog.FileNames;
-                int x = 20;
-                int y = 20;
-                int maxHeight = -1;
+                Union(longNameList, ofDialog.FileNames);
 
-                foreach (string filename in nameList)
+                ListBox listBox = new ListBox();
+                listBox.Location = new Point(3, 3);
+                listBox.Width = 253;
+                listBox.Height = 490;
+                listBox.BorderStyle = BorderStyle.None;
+                //listBox.BackColor = Color.Gray;
+                listBox.Name = "Image List";
+
+                List<string> shortNameList = new List<string> ();
+
+                foreach (string longName in longNameList)
                 {
-                    PictureBox picBox = new PictureBox();
-                    picBox.Image = Image.FromFile(filename);
-                    picBox.Location = new Point(x, y);
-                    picBox.SizeMode = PictureBoxSizeMode.StretchImage;
-                    x += picBox.Width + 10;
-                    maxHeight = Math.Max(picBox.Height, maxHeight);
+                    shortNameList = longName.Split('\\').ToList();
+                    listBox.Items.Add(shortNameList.Last());
+                }
 
-                    if(x > this.ClientSize.Width)
-                    {
-                        x = 20;
-                        y += maxHeight + 10;
-                    }
-                
-                    this.panel.Controls.Add(picBox);
+                this.listBox.Controls.Clear();
+                this.listBox.Controls.Add(listBox);
+            }
+        }
+
+        //private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        //{
+        //    if (treeView1.SelectedNode.Text == "Usercontrol1")
+        //    {trdtygregfdgvfdgfdsijmonabiiibiancabiancaasdfghjkllkjhgfds
+        //        panel.Controls.Clear();
+        //        panel.Visible = true;
+        //        UserControl1 usr1 = new UserControl1();
+        //        usr1.Show();
+        //        panel1.Controls.Add(usr1);
+        //    }
+        //    if (treeView1.SelectedNode.Text == "Usercontrol2")
+        //    {
+        //        panel.Controls.Clear();
+        //        panel.Visible = true;
+        //        UserControl2 usr2 = new UserControl2();
+        //        usr2.Show();
+        //        panel1.Controls.Add(usr2);
+        //    }
+        //    if (treeView1.SelectedNode.Text == "Root")
+        //    {
+        //        panel.Controls.Clear();
+        //        panel.Visible = false;
+        //    }
+        //}
+
+        // copies items from set2 into set1 if they are not already there
+        
+        static void Union(List<string> set1, string[] set2)
+        {
+            foreach (string item in set2)
+            {
+                if (!set1.Contains(item))
+                {
+                    set1.Add(item);
                 }
             }
-        }
-
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-            if (treeView1.SelectedNode.Text == "Usercontrol1")
-            {
-                panel.Controls.Clear();
-                panel.Visible = true;
-                UserControl1 usr1 = new UserControl1();
-                usr1.Show();
-                panel1.Controls.Add(usr1);
-            }
-            if (treeView1.SelectedNode.Text == "Usercontrol2")
-            {
-                panel.Controls.Clear();
-                panel.Visible = true;
-                UserControl2 usr2 = new UserControl2();
-                usr2.Show();
-                panel1.Controls.Add(usr2);
-            }
-            if (treeView1.SelectedNode.Text == "Root")
-            {
-                panel.Controls.Clear();
-                panel.Visible = false;
-            }
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }
