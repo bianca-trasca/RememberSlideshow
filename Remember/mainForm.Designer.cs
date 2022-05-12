@@ -122,7 +122,7 @@
             this.showPwMainFormCheckBox.Location = new System.Drawing.Point(471, 295);
             this.showPwMainFormCheckBox.Name = "showPwMainFormCheckBox";
             this.showPwMainFormCheckBox.Size = new System.Drawing.Size(104, 16);
-            this.showPwMainFormCheckBox.TabIndex = 6;
+            this.showPwMainFormCheckBox.TabIndex = 7;
             this.showPwMainFormCheckBox.Text = "Show Password";
             this.showPwMainFormCheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.showPwMainFormCheckBox.UseVisualStyleBackColor = false;
@@ -135,7 +135,7 @@
             this.logInMainFormButton.Location = new System.Drawing.Point(471, 320);
             this.logInMainFormButton.Name = "logInMainFormButton";
             this.logInMainFormButton.Size = new System.Drawing.Size(75, 23);
-            this.logInMainFormButton.TabIndex = 7;
+            this.logInMainFormButton.TabIndex = 6;
             this.logInMainFormButton.Text = "Log in";
             this.logInMainFormButton.UseVisualStyleBackColor = false;
             this.logInMainFormButton.Click += new System.EventHandler(this.logInMainFormButton_Click);

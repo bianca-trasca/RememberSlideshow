@@ -28,32 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dashboard));
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.createSL = new System.Windows.Forms.Button();
             this.browseBtn = new System.Windows.Forms.Button();
             this.listBox = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.clearBtn = new System.Windows.Forms.Button();
+            this.deleteBtn = new System.Windows.Forms.Button();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFile";
             // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.Location = new System.Drawing.Point(287, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(640, 360);
-            this.panel1.TabIndex = 0;
-            // 
             // createSL
             // 
-            this.createSL.Location = new System.Drawing.Point(804, 514);
+            this.createSL.Location = new System.Drawing.Point(782, 419);
             this.createSL.Name = "createSL";
             this.createSL.Size = new System.Drawing.Size(118, 23);
             this.createSL.TabIndex = 1;
@@ -63,9 +57,9 @@
             // 
             // browseBtn
             // 
-            this.browseBtn.Location = new System.Drawing.Point(198, 514);
+            this.browseBtn.Location = new System.Drawing.Point(134, 419);
             this.browseBtn.Name = "browseBtn";
-            this.browseBtn.Size = new System.Drawing.Size(75, 23);
+            this.browseBtn.Size = new System.Drawing.Size(60, 23);
             this.browseBtn.TabIndex = 2;
             this.browseBtn.Text = "Browse";
             this.browseBtn.UseVisualStyleBackColor = true;
@@ -73,31 +67,45 @@
             // 
             // listBox
             // 
-            this.listBox.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.listBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.listBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.listBox.ForeColor = System.Drawing.SystemColors.Info;
             this.listBox.FormattingEnabled = true;
             this.listBox.Location = new System.Drawing.Point(12, 12);
             this.listBox.Name = "listBox";
-            this.listBox.Size = new System.Drawing.Size(261, 496);
+            this.listBox.Size = new System.Drawing.Size(182, 392);
             this.listBox.TabIndex = 3;
+            this.listBox.SelectedIndexChanged += new System.EventHandler(this.listBox_SelectedIndexChanged);
             // 
-            // button1
+            // clearBtn
             // 
-            this.button1.Location = new System.Drawing.Point(106, 514);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Clear list";
-            this.button1.UseVisualStyleBackColor = true;
+            this.clearBtn.Location = new System.Drawing.Point(73, 419);
+            this.clearBtn.Name = "clearBtn";
+            this.clearBtn.Size = new System.Drawing.Size(60, 23);
+            this.clearBtn.TabIndex = 4;
+            this.clearBtn.Text = "Clear list";
+            this.clearBtn.UseVisualStyleBackColor = true;
+            this.clearBtn.Click += new System.EventHandler(this.clearBtn_Click);
             // 
-            // button2
+            // deleteBtn
             // 
-            this.button2.Location = new System.Drawing.Point(12, 514);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Delete";
-            this.button2.UseVisualStyleBackColor = true;
+            this.deleteBtn.Location = new System.Drawing.Point(12, 419);
+            this.deleteBtn.Name = "deleteBtn";
+            this.deleteBtn.Size = new System.Drawing.Size(60, 23);
+            this.deleteBtn.TabIndex = 5;
+            this.deleteBtn.Text = "Delete";
+            this.deleteBtn.UseVisualStyleBackColor = true;
+            this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
+            // 
+            // pictureBox
+            // 
+            this.pictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox.Location = new System.Drawing.Point(199, 12);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(700, 392);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox.TabIndex = 6;
+            this.pictureBox.TabStop = false;
             // 
             // dashboard
             // 
@@ -105,28 +113,30 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(934, 541);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(907, 452);
+            this.Controls.Add(this.pictureBox);
+            this.Controls.Add(this.deleteBtn);
+            this.Controls.Add(this.clearBtn);
             this.Controls.Add(this.listBox);
             this.Controls.Add(this.browseBtn);
             this.Controls.Add(this.createSL);
-            this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "dashboard";
             this.Text = "dashboard";
+            this.Load += new System.EventHandler(this.dashboard_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button createSL;
         private System.Windows.Forms.Button browseBtn;
         private System.Windows.Forms.ListBox listBox;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button clearBtn;
+        private System.Windows.Forms.Button deleteBtn;
+        private System.Windows.Forms.PictureBox pictureBox;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

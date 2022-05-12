@@ -127,6 +127,12 @@
     <Compile Include="signUpForm.Designer.cs">
       <DependentUpon>signUpForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="slideshow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="slideshow.Designer.cs">
+      <DependentUpon>slideshow.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="dashboard.resx">
       <DependentUpon>dashboard.cs</DependentUpon>
     </EmbeddedResource>
@@ -140,6 +146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="signUpForm.resx">
       <DependentUpon>signUpForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="slideshow.resx">
+      <DependentUpon>slideshow.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

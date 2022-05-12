@@ -14,70 +14,27 @@ namespace Remember
 {
     public partial class dashboard : Form
     {
-        List<string> longNameList = new List<string>();
+        public static List<string> currentImageList { get; set; } = new List<string>();
+        private string pathToImages { get; } = @"C:\Users\byanc\OneDrive\Desktop\Licenta\Repos\RememberPhotoVideoSlideshow\images169\";
+        private int lastDeletedIndex;
 
         public dashboard()
         {
             InitializeComponent();
         }
 
-        Image file;
-        Boolean opened = false;
-
-
-        //public void OpenImage()
-        //{
-        //    DialogResult dialog = openFileDialog1.ShowDialog();
-        //    if(dialog == DialogResult.OK)
-        //    {
-        //        file = Image.FromFile(openFileDialog1.FileName);
-        //        pictureBox.Image = file;
-        //        opened = true;
-        //    }
-        //}
-
-        public void SaveImage()
+        private void dashboard_Load(object sender, EventArgs e)
         {
-            if(opened)
-            {
-                SaveFileDialog saveFileDialog = new SaveFileDialog();
-                saveFileDialog.Filter = "Images|*.png;*.bmp;*.jpg";
-                ImageFormat format = ImageFormat.Png;
+            toolTip1.AutoPopDelay = 5000;
+            toolTip1.InitialDelay = 500;
+            toolTip1.ReshowDelay = 500;
+            toolTip1.ShowAlways = true;
 
-                if(saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    string ext = Path.GetExtension(saveFileDialog.FileName);
-                    switch (ext)
-                    {
-                        case ".jpg":
-                            format = ImageFormat.Jpeg;
-                            break;
-                        case ".bmp":
-                            format = ImageFormat.Bmp;
-                            break;
-                    }
-                    //pictureBox.Image.Save(saveFileDialog.FileName, format);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Please upload an image first!");
-            }
+            toolTip1.SetToolTip(this.deleteBtn, "Deletes the selected photo");
+            //toolTip1.SetToolTip(this.checkBox1, "My checkBox1");
         }
 
         private void browseBtn_Click(object sender, EventArgs e)
-        {
-            OpenImages();
-        }
-
-        private void createSL_Click(object sender, EventArgs e)
-        {
-            //SaveImage();
-            // Create SLideShow
-        }
-        
-        // https://www.youtube.com/watch?v=d0AHKq7lDF4
-        private void OpenImages()
         {
             OpenFileDialog ofDialog = new OpenFileDialog();
             ofDialog.Title = "Select images";
@@ -85,67 +42,109 @@ namespace Remember
             ofDialog.Filter = "JPG|*.jpg|JPEG|*.jpeg|PNG|*.png";
             DialogResult dr = ofDialog.ShowDialog();
 
-            if (dr == System.Windows.Forms.DialogResult.OK)
+            if (dr == DialogResult.OK)
             {
-                Union(longNameList, ofDialog.FileNames);
-
-                ListBox listBox = new ListBox();
-                listBox.Location = new Point(3, 3);
-                listBox.Width = 253;
-                listBox.Height = 490;
-                listBox.BorderStyle = BorderStyle.None;
-                //listBox.BackColor = Color.Gray;
-                listBox.Name = "Image List";
-
-                List<string> shortNameList = new List<string> ();
-
-                foreach (string longName in longNameList)
+                List<string> shortFileNames = new List<string>();
+                foreach (string longName in ofDialog.FileNames)
                 {
-                    shortNameList = longName.Split('\\').ToList();
-                    listBox.Items.Add(shortNameList.Last());
+                    string shortName = longName.Split('\\').ToList().Last();
+                    shortFileNames.Add(shortName);
                 }
 
-                this.listBox.Controls.Clear();
-                this.listBox.Controls.Add(listBox);
+                bool first = true;
+                string imageToBeShown = shortFileNames[0];
+
+                // Union 
+                foreach (string item in shortFileNames)
+                {
+                    if (!currentImageList.Contains(item))
+                    {
+                        if (first)
+                        {
+                            imageToBeShown = item;
+                            first = false;
+                        }
+
+                        currentImageList.Add(item);
+                        listBox.Items.Add(item);
+                    }
+                }
+
+                string pathToImageToBeShown = pathToImages + imageToBeShown;
+                pictureBox.Image = Image.FromFile(pathToImageToBeShown);
+                listBox.SelectedIndex = getImageIndex(imageToBeShown, listBox);
             }
         }
 
-        //private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
-        //{
-        //    if (treeView1.SelectedNode.Text == "Usercontrol1")
-        //    {trdtygregfdgvfdgfdsijmonabiiibiancabiancaasdfghjkllkjhgfds
-        //        panel.Controls.Clear();
-        //        panel.Visible = true;
-        //        UserControl1 usr1 = new UserControl1();
-        //        usr1.Show();
-        //        panel1.Controls.Add(usr1);
-        //    }
-        //    if (treeView1.SelectedNode.Text == "Usercontrol2")
-        //    {
-        //        panel.Controls.Clear();
-        //        panel.Visible = true;
-        //        UserControl2 usr2 = new UserControl2();
-        //        usr2.Show();
-        //        panel1.Controls.Add(usr2);
-        //    }
-        //    if (treeView1.SelectedNode.Text == "Root")
-        //    {
-        //        panel.Controls.Clear();
-        //        panel.Visible = false;
-        //    }
-        //}
-
-        // copies items from set2 into set1 if they are not already there
-        
-        static void Union(List<string> set1, string[] set2)
+        private void clearBtn_Click(object sender, EventArgs e)
         {
-            foreach (string item in set2)
+            listBox.Items.Clear();
+            currentImageList.Clear();
+            pictureBox.Image = null;
+        }
+
+        private void deleteBtn_Click(object sender, EventArgs e)
+        {
+            lastDeletedIndex = listBox.SelectedIndex;
+            string selectedPhoto = (string)listBox.SelectedItem;
+            listBox.Items.Remove(selectedPhoto);
+            currentImageList.Remove(selectedPhoto);
+        }
+
+        private void createSL_Click(object sender, EventArgs e)
+        {
+            new slideshow().Show();
+        }
+
+        private void listBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListBox listBox = sender as ListBox;
+
+            //when a new image is selected
+            if (listBox.SelectedItem != null)
             {
-                if (!set1.Contains(item))
+                string selectedItem = listBox.SelectedItem.ToString();
+
+                string pathToSelectedImage = String.Format(@"C:\Users\byanc\OneDrive\Desktop\Licenta\Repos\RememberPhotoVideoSlideshow\images169\{0}", selectedItem);
+
+                pictureBox.Image = Image.FromFile(pathToSelectedImage);
+            }
+            else //when the image selected is deleted
+            {
+                int newSelectedIndex;
+
+                if (listBox.Items.Count == 0)
                 {
-                    set1.Add(item);
+                    pictureBox.Image = null;
+                    return;
                 }
+                else if (lastDeletedIndex + 1 <= listBox.Items.Count) //if the deleted image is not the last one
+                {
+                    newSelectedIndex = lastDeletedIndex;
+                }
+                else
+                {
+                    newSelectedIndex = lastDeletedIndex - 1;
+                }
+
+                string imageToBeShown = listBox.Items[newSelectedIndex].ToString();
+                string pathToImageToBeShown = pathToImages + imageToBeShown;
+                pictureBox.Image = Image.FromFile(pathToImageToBeShown);
+                listBox.SelectedIndex = newSelectedIndex;
             }
         }
+
+        private int getImageIndex(string image, ListBox listBox)
+        {
+            for (int index = 0; index <= listBox.Items.Count; index++)
+            {
+                if (listBox.Items[index].ToString().Equals(image))
+                {
+                    return index;
+                }
+            }
+            return 0;
+        }
+
     }
 }
