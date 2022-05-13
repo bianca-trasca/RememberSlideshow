@@ -145,6 +145,5 @@ namespace Remember
             }
             return 0;
         }
-
     }
 }
