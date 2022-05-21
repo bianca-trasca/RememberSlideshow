@@ -93,7 +93,15 @@ namespace Remember
 
         private void createSL_Click(object sender, EventArgs e)
         {
-            new slideshow().Show();
+            if (listBox.Items.Count > 4)
+            {
+                new slideshow().Show();
+            }
+            else
+            {
+                MessageBox.Show("You need to upload more photos to create a slideshow", "Slideshow cannot be created!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void listBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -145,6 +153,5 @@ namespace Remember
             }
             return 0;
         }
-
     }
 }

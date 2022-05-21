@@ -26,7 +26,7 @@ namespace Remember
         private void StartSlideshow()
         {
             imagesOnSlideShow = dashboard.currentImageList;
-
+            displayedImageIndex = 0;
             timer1.Start();
 
             pictureBox1.Image = Image.FromFile(pathToImages + imagesOnSlideShow[0].ToString());
@@ -65,7 +65,7 @@ namespace Remember
         {
             displayedImageIndex++;
 
-            if(displayedImageIndex == imagesOnSlideShow.Count - 1)
+            if(displayedImageIndex == imagesOnSlideShow.Count)
             {
                 pictureBox1.Image = null;
                 timer1.Stop();

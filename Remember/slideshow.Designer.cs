@@ -39,12 +39,12 @@ namespace Remember
             // 
             // timer1
             // 
-            this.timer1.Interval = 1000;
+            this.timer1.Interval = 3000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.DimGray;
+            this.pictureBox1.BackColor = System.Drawing.Color.Black;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);

@@ -100,7 +100,9 @@
             // pictureBox
             // 
             this.pictureBox.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox.Location = new System.Drawing.Point(199, 12);
+            this.pictureBox.Margin = new System.Windows.Forms.Padding(10);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(700, 392);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
