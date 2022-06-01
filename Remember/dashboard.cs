@@ -22,6 +22,7 @@ namespace Remember
         private string pathToMusic { get; } = @"C:\Users\byanc\OneDrive - Universitatea Politehnica Timisoara\Facultate\Licenta\Repos\RememberPhotoVideoSlideshow\music\";
         private int lastDeletedIndex;
         public static SoundPlayer player;
+        public static string melody;
 
         public dashboard()
         {
@@ -171,6 +172,7 @@ namespace Remember
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 musicLbl.Text = openFileDialog.FileName.Split('\\').ToList().Last();
+                melody = musicLbl.Text;
                 player = new SoundPlayer(openFileDialog.FileName);
 
             }
