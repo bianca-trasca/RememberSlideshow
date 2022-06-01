@@ -10,9 +10,9 @@ namespace Remember
 {
     public partial class slideshow : Form
     {
-        private static List<string> imagesOnSlideShow { get; set; } = new List<string>();
-        private static int displayedImageIndex { get; set; } = 0;
-        private static string currentPhotoOnSL { get; set; }
+        private static List<string> ImagesOnSlideShow { get; set; } = new List<string>();
+        private static int DisplayedImageIndex { get; set; } = 0;
+        private static string CurrentPhotoOnSL { get; set; }
         private static bool OpenedSL { get; set; } = false;
         private static Dictionary<string, int> Images { get; set; }
         private static Dictionary<string, int> RecordedImagesAndTime { get; set; } = new Dictionary<string, int>();
@@ -31,11 +31,11 @@ namespace Remember
 
         private void StartSlideshow()
         {
-            imagesOnSlideShow = dashboard.CurrentImageList;
-            displayedImageIndex = 0;
+            ImagesOnSlideShow = dashboard.CurrentImageList;
+            DisplayedImageIndex = 0;
             timer1.Start();
 
-            pictureBox1.Image = Image.FromFile(dashboard.PathToImages + imagesOnSlideShow[0].ToString());
+            pictureBox1.Image = Image.FromFile(dashboard.PathToImages + ImagesOnSlideShow[0].ToString());
             RecordSlideshow();
         }
 
@@ -52,44 +52,44 @@ namespace Remember
             }
 
             Images = images;
-            imagesOnSlideShow = images.Keys.ToList();
-            displayedImageIndex = 0;
+            ImagesOnSlideShow = images.Keys.ToList();
+            DisplayedImageIndex = 0;
             timer2.Interval = images.Values.First();
             timer2.Start();
-            pictureBox1.Image = Image.FromFile(dashboard.PathToImages + imagesOnSlideShow[0].ToString());
+            pictureBox1.Image = Image.FromFile(dashboard.PathToImages + ImagesOnSlideShow[0].ToString());
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            displayedImageIndex++;
+            DisplayedImageIndex++;
 
-            if (displayedImageIndex == imagesOnSlideShow.Count)
+            if (DisplayedImageIndex == ImagesOnSlideShow.Count)
             {
                 pictureBox1.Image = null;
                 timer1.Stop();
             }
             else
             {
-                pictureBox1.Image = Image.FromFile(dashboard.PathToImages + imagesOnSlideShow[displayedImageIndex]);
-                currentPhotoOnSL = imagesOnSlideShow[displayedImageIndex];
-                RecordedImagesAndTime[currentPhotoOnSL] = timer1.Interval;
+                pictureBox1.Image = Image.FromFile(dashboard.PathToImages + ImagesOnSlideShow[DisplayedImageIndex]);
+                CurrentPhotoOnSL = ImagesOnSlideShow[DisplayedImageIndex];
+                RecordedImagesAndTime[CurrentPhotoOnSL] = timer1.Interval;
             }
         }
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-            displayedImageIndex++;
+            DisplayedImageIndex++;
 
-            if (displayedImageIndex == imagesOnSlideShow.Count)
+            if (DisplayedImageIndex == ImagesOnSlideShow.Count)
             {
                 pictureBox1.Image = null;
                 timer2.Stop();
             }
             else
             {
-                pictureBox1.Image = Image.FromFile(dashboard.PathToImages + imagesOnSlideShow[displayedImageIndex]);
-                currentPhotoOnSL = imagesOnSlideShow[displayedImageIndex];
-                timer2.Interval = Images[currentPhotoOnSL];
+                pictureBox1.Image = Image.FromFile(dashboard.PathToImages + ImagesOnSlideShow[DisplayedImageIndex]);
+                CurrentPhotoOnSL = ImagesOnSlideShow[DisplayedImageIndex];
+                timer2.Interval = Images[CurrentPhotoOnSL];
             }
         }
 
@@ -121,7 +121,7 @@ namespace Remember
                 timer1.Interval = 1000;
                 foreach (string image in RecordedImagesAndTime.Keys)
                 {
-                    if (image.Equals(currentPhotoOnSL))
+                    if (image.Equals(CurrentPhotoOnSL))
                     {
                         RecordedImagesAndTime[image] = 1000;
                         break;
@@ -133,7 +133,7 @@ namespace Remember
                 timer1.Interval = 2000;
                 foreach (string image in RecordedImagesAndTime.Keys)
                 {
-                    if (image.Equals(currentPhotoOnSL))
+                    if (image.Equals(CurrentPhotoOnSL))
                     {
                         RecordedImagesAndTime[image] = 2000;
                         break;
@@ -145,7 +145,7 @@ namespace Remember
                 timer1.Interval = 3000;
                 foreach (string image in RecordedImagesAndTime.Keys)
                 {
-                    if (image.Equals(currentPhotoOnSL))
+                    if (image.Equals(CurrentPhotoOnSL))
                     {
                         RecordedImagesAndTime[image] = 3000;
                         break;
@@ -157,7 +157,7 @@ namespace Remember
                 timer1.Interval = 4000;
                 foreach (string image in RecordedImagesAndTime.Keys)
                 {
-                    if (image.Equals(currentPhotoOnSL))
+                    if (image.Equals(CurrentPhotoOnSL))
                     {
                         RecordedImagesAndTime[image] = 4000;
                         break;
@@ -169,7 +169,7 @@ namespace Remember
                 timer1.Interval = 5000;
                 foreach (string image in RecordedImagesAndTime.Keys)
                 {
-                    if (image.Equals(currentPhotoOnSL))
+                    if (image.Equals(CurrentPhotoOnSL))
                     {
                         RecordedImagesAndTime[image] = 5000;
                         break;
@@ -180,7 +180,7 @@ namespace Remember
 
         private void RecordSlideshow()
         {
-            foreach (string image in imagesOnSlideShow)
+            foreach (string image in ImagesOnSlideShow)
             {
                 RecordedImagesAndTime.Add(image, 2000);
             }
