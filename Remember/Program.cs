@@ -12,7 +12,7 @@ namespace Remember
         [STAThread]
         static void Main()
         {
-            string pathToDB = @"C:\Users\byanc\OneDrive\Desktop\Licenta\Repos\RememberPhotoVideoSlideshow\usersDataBase.db";
+            string pathToDB = @"C:\Users\byanc\OneDrive - Universitatea Politehnica Timisoara\Facultate\Licenta\Repos\RememberPhotoVideoSlideshow\usersDataBase.db";
             string dataSource = @"Data Source=" + pathToDB;
             SqliteConnection conn = new SqliteConnection(dataSource);
 

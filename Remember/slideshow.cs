@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,8 @@ namespace Remember
 {
     public partial class slideshow : Form
     {
-        private static string pathToImages = @"C:\Users\byanc\OneDrive\Desktop\Licenta\Repos\RememberPhotoVideoSlideshow\images169\";
+        private static string pathToImages = @"C:\Users\byanc\OneDrive - Universitatea Politehnica Timisoara\Facultate\Licenta\Repos\RememberPhotoVideoSlideshow\images\";
+        private static string pathToSlideshows = @"C:\Users\byanc\OneDrive - Universitatea Politehnica Timisoara\Facultate\Licenta\Repos\RememberPhotoVideoSlideshow\slideshows";
         private static List<string> imagesOnSlideShow = new List<string>();
         private static int displayedImageIndex = 0;
 
@@ -20,7 +22,6 @@ namespace Remember
         {
             InitializeComponent();
             StartSlideshow();
-            //if no images have been uploaded, open an information window
         }
 
         private void StartSlideshow()
@@ -30,6 +31,7 @@ namespace Remember
             timer1.Start();
 
             pictureBox1.Image = Image.FromFile(pathToImages + imagesOnSlideShow[0].ToString());
+            RecordSlideshow();
         }
 
         private void slideshow_KeyDown(object sender, KeyEventArgs e)
@@ -38,6 +40,7 @@ namespace Remember
             {
                 this.WindowState = FormWindowState.Normal;
                 this.Hide();
+                dashboard.player.Stop();
             }
             else if (e.KeyCode == Keys.D1)
             {
@@ -75,7 +78,14 @@ namespace Remember
                 pictureBox1.Image = Image.FromFile(pathToImages + imagesOnSlideShow[displayedImageIndex]);
             }
 
+        }
 
+        private void RecordSlideshow()
+        {
+            //pun toate detaliile intr-o lista si dupa ce dau esc intreb daca se doreste salvarea slideshowului. daca da, se ia pathul si atunci se scrie.
+            //daca nu, se da clear la tot
+            StreamWriter file = new StreamWriter(pathToSlideshows);
+            file.WriteLine("atext string");
         }
     }
 }

@@ -38,6 +38,9 @@
             this.deleteBtn = new System.Windows.Forms.Button();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.openBtn = new System.Windows.Forms.Button();
+            this.musicBtn = new System.Windows.Forms.Button();
+            this.musicLbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,9 +50,9 @@
             // 
             // createSL
             // 
-            this.createSL.Location = new System.Drawing.Point(782, 419);
+            this.createSL.Location = new System.Drawing.Point(794, 419);
             this.createSL.Name = "createSL";
-            this.createSL.Size = new System.Drawing.Size(118, 23);
+            this.createSL.Size = new System.Drawing.Size(105, 23);
             this.createSL.TabIndex = 1;
             this.createSL.Text = "Create SlideShow";
             this.createSL.UseVisualStyleBackColor = true;
@@ -109,6 +112,36 @@
             this.pictureBox.TabIndex = 6;
             this.pictureBox.TabStop = false;
             // 
+            // openBtn
+            // 
+            this.openBtn.Location = new System.Drawing.Point(681, 419);
+            this.openBtn.Name = "openBtn";
+            this.openBtn.Size = new System.Drawing.Size(105, 23);
+            this.openBtn.TabIndex = 11;
+            this.openBtn.Text = "Open SlideShow";
+            this.openBtn.UseVisualStyleBackColor = true;
+            // 
+            // musicBtn
+            // 
+            this.musicBtn.Location = new System.Drawing.Point(199, 419);
+            this.musicBtn.Name = "musicBtn";
+            this.musicBtn.Size = new System.Drawing.Size(83, 23);
+            this.musicBtn.TabIndex = 12;
+            this.musicBtn.Text = "Add music";
+            this.musicBtn.UseVisualStyleBackColor = true;
+            this.musicBtn.Click += new System.EventHandler(this.musicBtn_Click);
+            // 
+            // musicLbl
+            // 
+            this.musicLbl.AutoSize = true;
+            this.musicLbl.BackColor = System.Drawing.Color.Transparent;
+            this.musicLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.musicLbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.musicLbl.Location = new System.Drawing.Point(293, 423);
+            this.musicLbl.Name = "musicLbl";
+            this.musicLbl.Size = new System.Drawing.Size(0, 13);
+            this.musicLbl.TabIndex = 13;
+            // 
             // dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -116,6 +149,9 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(907, 452);
+            this.Controls.Add(this.musicLbl);
+            this.Controls.Add(this.musicBtn);
+            this.Controls.Add(this.openBtn);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.deleteBtn);
             this.Controls.Add(this.clearBtn);
@@ -128,6 +164,7 @@
             this.Load += new System.EventHandler(this.dashboard_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -140,5 +177,8 @@
         private System.Windows.Forms.Button deleteBtn;
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Button openBtn;
+        private System.Windows.Forms.Button musicBtn;
+        private System.Windows.Forms.Label musicLbl;
     }
 }
