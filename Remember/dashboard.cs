@@ -1,28 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Media;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Media;
-using WMPLib;
 
 namespace Remember
 {
     public partial class dashboard : Form
     {
-        public static List<string> currentImageList { get; set; } = new List<string>();
-        private string pathToImages { get; } = @"C:\Users\byanc\OneDrive - Universitatea Politehnica Timisoara\Facultate\Licenta\Repos\RememberPhotoVideoSlideshow\images\";
-        private string pathToMusic { get; } = @"C:\Users\byanc\OneDrive - Universitatea Politehnica Timisoara\Facultate\Licenta\Repos\RememberPhotoVideoSlideshow\music\";
-        private int lastDeletedIndex;
-        public static SoundPlayer player;
-        public static string melody;
+        private static string SOURCE { get; } = @"C:\Users\byanc\OneDrive - Universitatea Politehnica Timisoara\Facultate\Licenta\Repos\RememberPhotoVideoSlideshow\";
+        public static string PathToImages { get; } = SOURCE + "images" + "\\";
+        public static string PathToMusic { get; } = SOURCE + "music" + "\\";
+        public static string PathToSlideshows { get; set; } = SOURCE + "slideshows" + "\\";
+
+        public static List<string> CurrentImageList { get; set; } = new List<string>();
+        private int LastDeletedIndex { get; set; }
+        public static SoundPlayer Player { get; set; }
+        public static string Melody { get; set; }
 
         public dashboard()
         {
@@ -64,7 +60,7 @@ namespace Remember
                 // Union 
                 foreach (string item in shortFileNames)
                 {
-                    if (!currentImageList.Contains(item))
+                    if (!CurrentImageList.Contains(item))
                     {
                         if (first)
                         {
@@ -72,12 +68,12 @@ namespace Remember
                             first = false;
                         }
 
-                        currentImageList.Add(item);
+                        CurrentImageList.Add(item);
                         listBox.Items.Add(item);
                     }
                 }
 
-                string pathToImageToBeShown = pathToImages + imageToBeShown;
+                string pathToImageToBeShown = PathToImages + imageToBeShown;
                 pictureBox.Image = Image.FromFile(pathToImageToBeShown);
                 listBox.SelectedIndex = getImageIndex(imageToBeShown, listBox);
             }
@@ -86,23 +82,27 @@ namespace Remember
         private void clearBtn_Click(object sender, EventArgs e)
         {
             listBox.Items.Clear();
-            currentImageList.Clear();
+            CurrentImageList.Clear();
             pictureBox.Image = null;
         }
 
         private void deleteBtn_Click(object sender, EventArgs e)
         {
-            lastDeletedIndex = listBox.SelectedIndex;
+            LastDeletedIndex = listBox.SelectedIndex;
             string selectedPhoto = (string)listBox.SelectedItem;
             listBox.Items.Remove(selectedPhoto);
-            currentImageList.Remove(selectedPhoto);
+            CurrentImageList.Remove(selectedPhoto);
         }
 
         private void createSL_Click(object sender, EventArgs e)
         {
             if (listBox.Items.Count > 4)
             {
-                player.Play();
+                if(Player != null)
+                {
+                    Player.Play();
+                }
+                
                 new slideshow().Show();
             }
             else
@@ -134,17 +134,17 @@ namespace Remember
                     pictureBox.Image = null;
                     return;
                 }
-                else if (lastDeletedIndex + 1 <= listBox.Items.Count) //if the deleted image is not the last one
+                else if (LastDeletedIndex + 1 <= listBox.Items.Count) //if the deleted image is not the last one
                 {
-                    newSelectedIndex = lastDeletedIndex;
+                    newSelectedIndex = LastDeletedIndex;
                 }
                 else
                 {
-                    newSelectedIndex = lastDeletedIndex - 1;
+                    newSelectedIndex = LastDeletedIndex - 1;
                 }
 
                 string imageToBeShown = listBox.Items[newSelectedIndex].ToString();
-                string pathToImageToBeShown = pathToImages + imageToBeShown;
+                string pathToImageToBeShown = PathToImages + imageToBeShown;
                 pictureBox.Image = Image.FromFile(pathToImageToBeShown);
                 listBox.SelectedIndex = newSelectedIndex;
             }
@@ -172,10 +172,47 @@ namespace Remember
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 musicLbl.Text = openFileDialog.FileName.Split('\\').ToList().Last();
-                melody = musicLbl.Text;
-                player = new SoundPlayer(openFileDialog.FileName);
-
+                Melody = musicLbl.Text;
+                Player = new SoundPlayer(openFileDialog.FileName);
             }
+        }
+
+        private void openSlideshowBtn_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+
+            DialogResult dr = ofd.ShowDialog();
+
+            if (dr == DialogResult.OK)
+            {
+                CreateSlideshowFromText(ofd.FileName);
+            }
+        }
+
+        private void CreateSlideshowFromText(string pathToText)
+        {
+            Dictionary<string, int> imagesAndTime = new Dictionary<string, int>();
+            string melody;
+
+            StreamReader sr = new StreamReader(pathToText);
+            string text = sr.ReadToEnd();
+
+            string[] values = text.Split(' ');
+
+            melody = values[0];
+
+            for (int i = 1; i < values.Length; i = i + 2)
+            {
+                imagesAndTime.Add(values[i], Convert.ToInt32(values[i + 1]));
+            }
+
+            new slideshow(imagesAndTime, melody).Show();
+        }
+
+        private void closeMusicBtn_Click(object sender, EventArgs e)
+        {
+            dashboard.Melody = null;
+            musicLbl.Text = null;
         }
     }
 }

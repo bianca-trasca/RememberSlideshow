@@ -38,9 +38,10 @@
             this.deleteBtn = new System.Windows.Forms.Button();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.openBtn = new System.Windows.Forms.Button();
+            this.openSlideshowBtn = new System.Windows.Forms.Button();
             this.musicBtn = new System.Windows.Forms.Button();
             this.musicLbl = new System.Windows.Forms.Label();
+            this.closeMusicBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -112,14 +113,15 @@
             this.pictureBox.TabIndex = 6;
             this.pictureBox.TabStop = false;
             // 
-            // openBtn
+            // openSlideshowBtn
             // 
-            this.openBtn.Location = new System.Drawing.Point(681, 419);
-            this.openBtn.Name = "openBtn";
-            this.openBtn.Size = new System.Drawing.Size(105, 23);
-            this.openBtn.TabIndex = 11;
-            this.openBtn.Text = "Open SlideShow";
-            this.openBtn.UseVisualStyleBackColor = true;
+            this.openSlideshowBtn.Location = new System.Drawing.Point(681, 419);
+            this.openSlideshowBtn.Name = "openSlideshowBtn";
+            this.openSlideshowBtn.Size = new System.Drawing.Size(105, 23);
+            this.openSlideshowBtn.TabIndex = 11;
+            this.openSlideshowBtn.Text = "Open SlideShow";
+            this.openSlideshowBtn.UseVisualStyleBackColor = true;
+            this.openSlideshowBtn.Click += new System.EventHandler(this.openSlideshowBtn_Click);
             // 
             // musicBtn
             // 
@@ -137,10 +139,26 @@
             this.musicLbl.BackColor = System.Drawing.Color.Transparent;
             this.musicLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.musicLbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.musicLbl.Location = new System.Drawing.Point(293, 423);
+            this.musicLbl.Location = new System.Drawing.Point(308, 423);
             this.musicLbl.Name = "musicLbl";
             this.musicLbl.Size = new System.Drawing.Size(0, 13);
             this.musicLbl.TabIndex = 13;
+            // 
+            // closeMusicBtn
+            // 
+            this.closeMusicBtn.BackColor = System.Drawing.Color.IndianRed;
+            this.closeMusicBtn.FlatAppearance.BorderColor = System.Drawing.Color.IndianRed;
+            this.closeMusicBtn.FlatAppearance.BorderSize = 0;
+            this.closeMusicBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.closeMusicBtn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.closeMusicBtn.Location = new System.Drawing.Point(285, 421);
+            this.closeMusicBtn.Name = "closeMusicBtn";
+            this.closeMusicBtn.Size = new System.Drawing.Size(20, 20);
+            this.closeMusicBtn.TabIndex = 14;
+            this.closeMusicBtn.Text = "X";
+            this.toolTip1.SetToolTip(this.closeMusicBtn, "Click to remove selected music");
+            this.closeMusicBtn.UseVisualStyleBackColor = false;
+            this.closeMusicBtn.Click += new System.EventHandler(this.closeMusicBtn_Click);
             // 
             // dashboard
             // 
@@ -149,9 +167,10 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(907, 452);
+            this.Controls.Add(this.closeMusicBtn);
             this.Controls.Add(this.musicLbl);
             this.Controls.Add(this.musicBtn);
-            this.Controls.Add(this.openBtn);
+            this.Controls.Add(this.openSlideshowBtn);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.deleteBtn);
             this.Controls.Add(this.clearBtn);
@@ -177,8 +196,9 @@
         private System.Windows.Forms.Button deleteBtn;
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.Button openBtn;
+        private System.Windows.Forms.Button openSlideshowBtn;
         private System.Windows.Forms.Button musicBtn;
         private System.Windows.Forms.Label musicLbl;
+        private System.Windows.Forms.Button closeMusicBtn;
     }
 }
