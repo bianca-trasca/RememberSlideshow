@@ -56,7 +56,8 @@ namespace Remember
                 }
                 else
                 {
-                    string loginQuery = "INSERT INTO tbl_users VALUES ('" + usrSignUpFormTextBox.Text + "', '" + pwSignUpFormTextBox.Text + "')";
+                    string loginQuery = "INSERT INTO tbl_users VALUES ('" + usrSignUpFormTextBox.Text + "', '" + 
+                        pwSignUpFormTextBox.Text + "')";
                     cmd = new SqliteCommand(loginQuery, Conn);
                     cmd.ExecuteNonQuery();
                     Conn.Close();

@@ -70,6 +70,7 @@ namespace Remember
             }
             else
             {
+                //aici
                 pictureBox1.Image = Image.FromFile(dashboard.PathToImages + ImagesOnSlideShow[DisplayedImageIndex]);
                 CurrentPhotoOnSL = ImagesOnSlideShow[DisplayedImageIndex];
                 RecordedImagesAndTime[CurrentPhotoOnSL] = timer1.Interval;
@@ -106,7 +107,8 @@ namespace Remember
                 
                 if (!OpenedSL)
                 {
-                    DialogResult dr = MessageBox.Show("Would you like to save the slideshow?", "Save slideshow!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult dr = MessageBox.Show("Would you like to save the slideshow?", 
+                        "Save slideshow!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dr == DialogResult.Yes)
                     {
                         WriteRecordedDataToFile();
@@ -114,7 +116,6 @@ namespace Remember
 
                     RecordedImagesAndTime.Clear();
                 }
-
             }
             else if (e.KeyCode == Keys.D1)
             {

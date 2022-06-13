@@ -41,7 +41,7 @@ namespace Remember
             ofDialog.Title = "Select images";
             ofDialog.Multiselect = true;
             ofDialog.Filter = "JPG|*.jpg|JPEG|*.jpeg|PNG|*.png";
-            ofDialog.InitialDirectory = @"C:\Users\byanc\OneDrive - Universitatea Politehnica Timisoara\Facultate\Licenta\Repos\RememberPhotoVideoSlideshow\images";
+            ofDialog.InitialDirectory = PathToImages;
 
             DialogResult dr = ofDialog.ShowDialog();
 
@@ -121,11 +121,12 @@ namespace Remember
             {
                 string selectedItem = listBox.SelectedItem.ToString();
 
-                string pathToSelectedImage = String.Format(@"C:\Users\byanc\OneDrive - Universitatea Politehnica Timisoara\Facultate\Licenta\Repos\RememberPhotoVideoSlideshow\images\{0}", selectedItem);
+                string pathToSelectedImage = PathToImages + selectedItem;
 
                 pictureBox.Image = Image.FromFile(pathToSelectedImage);
             }
-            else //when the image selected is deleted
+            //when the image selected is deleted
+            else
             {
                 int newSelectedIndex;
 
@@ -134,7 +135,8 @@ namespace Remember
                     pictureBox.Image = null;
                     return;
                 }
-                else if (LastDeletedIndex + 1 <= listBox.Items.Count) //if the deleted image is not the last one
+                //if the deleted image is not the last one
+                else if (LastDeletedIndex + 1 <= listBox.Items.Count) 
                 {
                     newSelectedIndex = LastDeletedIndex;
                 }

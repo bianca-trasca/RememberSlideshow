@@ -38,10 +38,11 @@
             this.deleteBtn = new System.Windows.Forms.Button();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.closeMusicBtn = new System.Windows.Forms.Button();
             this.openSlideshowBtn = new System.Windows.Forms.Button();
             this.musicBtn = new System.Windows.Forms.Button();
             this.musicLbl = new System.Windows.Forms.Label();
-            this.closeMusicBtn = new System.Windows.Forms.Button();
+            this.informationButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,7 +52,7 @@
             // 
             // createSL
             // 
-            this.createSL.Location = new System.Drawing.Point(794, 419);
+            this.createSL.Location = new System.Drawing.Point(765, 419);
             this.createSL.Name = "createSL";
             this.createSL.Size = new System.Drawing.Size(105, 23);
             this.createSL.TabIndex = 1;
@@ -66,6 +67,7 @@
             this.browseBtn.Size = new System.Drawing.Size(60, 23);
             this.browseBtn.TabIndex = 2;
             this.browseBtn.Text = "Browse";
+            this.toolTip1.SetToolTip(this.browseBtn, "Click to browse photos");
             this.browseBtn.UseVisualStyleBackColor = true;
             this.browseBtn.Click += new System.EventHandler(this.browseBtn_Click);
             // 
@@ -88,6 +90,7 @@
             this.clearBtn.Size = new System.Drawing.Size(60, 23);
             this.clearBtn.TabIndex = 4;
             this.clearBtn.Text = "Clear list";
+            this.toolTip1.SetToolTip(this.clearBtn, "Click to clear all photos");
             this.clearBtn.UseVisualStyleBackColor = true;
             this.clearBtn.Click += new System.EventHandler(this.clearBtn_Click);
             // 
@@ -98,6 +101,7 @@
             this.deleteBtn.Size = new System.Drawing.Size(60, 23);
             this.deleteBtn.TabIndex = 5;
             this.deleteBtn.Text = "Delete";
+            this.toolTip1.SetToolTip(this.deleteBtn, "Click to delete the selected photo");
             this.deleteBtn.UseVisualStyleBackColor = true;
             this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
             // 
@@ -112,37 +116,6 @@
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox.TabIndex = 6;
             this.pictureBox.TabStop = false;
-            // 
-            // openSlideshowBtn
-            // 
-            this.openSlideshowBtn.Location = new System.Drawing.Point(681, 419);
-            this.openSlideshowBtn.Name = "openSlideshowBtn";
-            this.openSlideshowBtn.Size = new System.Drawing.Size(105, 23);
-            this.openSlideshowBtn.TabIndex = 11;
-            this.openSlideshowBtn.Text = "Open SlideShow";
-            this.openSlideshowBtn.UseVisualStyleBackColor = true;
-            this.openSlideshowBtn.Click += new System.EventHandler(this.openSlideshowBtn_Click);
-            // 
-            // musicBtn
-            // 
-            this.musicBtn.Location = new System.Drawing.Point(199, 419);
-            this.musicBtn.Name = "musicBtn";
-            this.musicBtn.Size = new System.Drawing.Size(83, 23);
-            this.musicBtn.TabIndex = 12;
-            this.musicBtn.Text = "Add music";
-            this.musicBtn.UseVisualStyleBackColor = true;
-            this.musicBtn.Click += new System.EventHandler(this.musicBtn_Click);
-            // 
-            // musicLbl
-            // 
-            this.musicLbl.AutoSize = true;
-            this.musicLbl.BackColor = System.Drawing.Color.Transparent;
-            this.musicLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.musicLbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.musicLbl.Location = new System.Drawing.Point(308, 423);
-            this.musicLbl.Name = "musicLbl";
-            this.musicLbl.Size = new System.Drawing.Size(0, 13);
-            this.musicLbl.TabIndex = 13;
             // 
             // closeMusicBtn
             // 
@@ -160,6 +133,52 @@
             this.closeMusicBtn.UseVisualStyleBackColor = false;
             this.closeMusicBtn.Click += new System.EventHandler(this.closeMusicBtn_Click);
             // 
+            // openSlideshowBtn
+            // 
+            this.openSlideshowBtn.Location = new System.Drawing.Point(652, 419);
+            this.openSlideshowBtn.Name = "openSlideshowBtn";
+            this.openSlideshowBtn.Size = new System.Drawing.Size(105, 23);
+            this.openSlideshowBtn.TabIndex = 11;
+            this.openSlideshowBtn.Text = "Open SlideShow";
+            this.openSlideshowBtn.UseVisualStyleBackColor = true;
+            this.openSlideshowBtn.Click += new System.EventHandler(this.openSlideshowBtn_Click);
+            // 
+            // musicBtn
+            // 
+            this.musicBtn.Location = new System.Drawing.Point(199, 419);
+            this.musicBtn.Name = "musicBtn";
+            this.musicBtn.Size = new System.Drawing.Size(83, 23);
+            this.musicBtn.TabIndex = 12;
+            this.musicBtn.Text = "Add music";
+            this.toolTip1.SetToolTip(this.musicBtn, "Click to browse music");
+            this.musicBtn.UseVisualStyleBackColor = true;
+            this.musicBtn.Click += new System.EventHandler(this.musicBtn_Click);
+            // 
+            // musicLbl
+            // 
+            this.musicLbl.AutoSize = true;
+            this.musicLbl.BackColor = System.Drawing.Color.Transparent;
+            this.musicLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.musicLbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.musicLbl.Location = new System.Drawing.Point(308, 423);
+            this.musicLbl.Name = "musicLbl";
+            this.musicLbl.Size = new System.Drawing.Size(0, 13);
+            this.musicLbl.TabIndex = 13;
+            // 
+            // informationButton
+            // 
+            this.informationButton.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.informationButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.informationButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.informationButton.Location = new System.Drawing.Point(876, 420);
+            this.informationButton.Name = "informationButton";
+            this.informationButton.Size = new System.Drawing.Size(20, 20);
+            this.informationButton.TabIndex = 15;
+            this.informationButton.Text = "i";
+            this.toolTip1.SetToolTip(this.informationButton, "While slideshow runs, you can click on buttons from 1 to 5 to\r\nchange the number " +
+        "of seconds for transitions between photos.");
+            this.informationButton.UseVisualStyleBackColor = false;
+            // 
             // dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -167,6 +186,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(907, 452);
+            this.Controls.Add(this.informationButton);
             this.Controls.Add(this.closeMusicBtn);
             this.Controls.Add(this.musicLbl);
             this.Controls.Add(this.musicBtn);
@@ -200,5 +220,6 @@
         private System.Windows.Forms.Button musicBtn;
         private System.Windows.Forms.Label musicLbl;
         private System.Windows.Forms.Button closeMusicBtn;
+        private System.Windows.Forms.Button informationButton;
     }
 }

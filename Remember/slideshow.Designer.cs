@@ -78,7 +78,6 @@ namespace Remember
         #endregion
 
         private Timer timer1;
-        private Timer timer;
         private PictureBox pictureBox1;
         private Timer timer2;
     }

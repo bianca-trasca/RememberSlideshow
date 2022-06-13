@@ -39,6 +39,7 @@
             this.logInMainFormButton = new System.Windows.Forms.Button();
             this.signUpMainFormButton = new System.Windows.Forms.Button();
             this.signUpMainFormLable = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // welcomeLable
@@ -115,15 +116,14 @@
             // showPwMainFormCheckBox
             // 
             this.showPwMainFormCheckBox.AutoSize = true;
-            this.showPwMainFormCheckBox.BackColor = System.Drawing.Color.Transparent;
+            this.showPwMainFormCheckBox.BackColor = System.Drawing.Color.White;
             this.showPwMainFormCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.showPwMainFormCheckBox.Font = new System.Drawing.Font("Verdana", 7F);
-            this.showPwMainFormCheckBox.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.showPwMainFormCheckBox.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.showPwMainFormCheckBox.Location = new System.Drawing.Point(471, 295);
             this.showPwMainFormCheckBox.Name = "showPwMainFormCheckBox";
-            this.showPwMainFormCheckBox.Size = new System.Drawing.Size(104, 16);
+            this.showPwMainFormCheckBox.Size = new System.Drawing.Size(12, 11);
             this.showPwMainFormCheckBox.TabIndex = 7;
-            this.showPwMainFormCheckBox.Text = "Show Password";
             this.showPwMainFormCheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.showPwMainFormCheckBox.UseVisualStyleBackColor = false;
             this.showPwMainFormCheckBox.CheckedChanged += new System.EventHandler(this.showPwMainFormCheckBox_CheckedChanged);
@@ -164,6 +164,18 @@
             this.signUpMainFormLable.TabIndex = 9;
             this.signUpMainFormLable.Text = "If you don\'t have an account, you can sign up for free!";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Verdana", 8F);
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label1.Location = new System.Drawing.Point(489, 293);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(96, 13);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Show password";
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -172,6 +184,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(962, 540);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.signUpMainFormLable);
             this.Controls.Add(this.signUpMainFormButton);
             this.Controls.Add(this.logInMainFormButton);
@@ -205,6 +218,7 @@
         private System.Windows.Forms.Button logInMainFormButton;
         private System.Windows.Forms.Button signUpMainFormButton;
         private System.Windows.Forms.Label signUpMainFormLable;
+        private System.Windows.Forms.Label label1;
     }
 }
 
