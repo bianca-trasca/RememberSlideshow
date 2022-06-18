@@ -14,6 +14,7 @@ namespace Remember
         private static int DisplayedImageIndex { get; set; } = 0;
         private static double OpacityRate { get; set; } = 0.05;
         private static bool IsTransitionPaused { get; set; } = false;
+        private static bool IsMusicPaused { get; set; } = true;
         private static TransitionSlideshow transitionSlideshow { get; set; } = new TransitionSlideshow();
         private static Background background { get; set; } = new Background();
 
@@ -117,7 +118,17 @@ namespace Remember
             // Start/stop music
             else if (e.KeyCode == Keys.A)
             {
-                // music start/stop
+                if (IsMusicPaused)
+                {
+                    Dashboard.Player.Play();
+                    IsMusicPaused = false;
+                }
+                else
+                {
+                    Dashboard.Player.Stop();
+                    IsMusicPaused = true;
+
+                }
             }
             // pause transition
             else if (e.KeyCode == Keys.Space)
