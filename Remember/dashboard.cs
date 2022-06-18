@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Remember
 {
-    public partial class dashboard : Form
+    public partial class Dashboard : Form
     {
         private static string SOURCE { get; } = @"C:\Users\byanc\OneDrive - Universitatea Politehnica Timisoara\Facultate\Licenta\Repos\RememberPhotoVideoSlideshow\";
         public static string PathToImages { get; } = SOURCE + "images" + "\\";
@@ -20,7 +20,7 @@ namespace Remember
         public static SoundPlayer Player { get; set; }
         public static string Melody { get; set; }
 
-        public dashboard()
+        public Dashboard()
         {
             InitializeComponent();
         }
@@ -98,12 +98,7 @@ namespace Remember
         {
             if (listBox.Items.Count > 4)
             {
-                if(Player != null)
-                {
-                    Player.Play();
-                }
-                
-                new slideshow().Show();
+                new Slideshow().Show();
             }
             else
             {
@@ -179,41 +174,9 @@ namespace Remember
             }
         }
 
-        private void openSlideshowBtn_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog ofd = new OpenFileDialog();
-
-            DialogResult dr = ofd.ShowDialog();
-
-            if (dr == DialogResult.OK)
-            {
-                CreateSlideshowFromText(ofd.FileName);
-            }
-        }
-
-        private void CreateSlideshowFromText(string pathToText)
-        {
-            Dictionary<string, int> imagesAndTime = new Dictionary<string, int>();
-            string melody;
-
-            StreamReader sr = new StreamReader(pathToText);
-            string text = sr.ReadToEnd();
-
-            string[] values = text.Split(' ');
-
-            melody = values[0];
-
-            for (int i = 1; i < values.Length; i = i + 2)
-            {
-                imagesAndTime.Add(values[i], Convert.ToInt32(values[i + 1]));
-            }
-
-            new slideshow(imagesAndTime, melody).Show();
-        }
-
         private void closeMusicBtn_Click(object sender, EventArgs e)
         {
-            dashboard.Melody = null;
+            Dashboard.Melody = null;
             musicLbl.Text = null;
         }
     }

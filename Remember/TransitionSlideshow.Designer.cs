@@ -1,9 +1,6 @@
-﻿using System;
-using System.Windows.Forms;
-
-namespace Remember
+﻿namespace Remember
 {
-    partial class Slideshow
+    partial class TransitionSlideshow
     {
         /// <summary>
         /// Required designer variable.
@@ -32,16 +29,10 @@ namespace Remember
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // timer1
-            // 
-            this.timer1.Interval = 50;
-            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // pictureBox1
             // 
@@ -55,26 +46,23 @@ namespace Remember
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // Slideshow
+            // TransitionSlideshow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Slideshow";
-            this.Text = "slideshow";
+            this.Name = "TransitionSlideshow";
+            this.Text = "TransitionSlideshow";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Slideshow_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private Timer timer1;
-        private PictureBox pictureBox1;
-        private Timer timer2;
+        private System.Windows.Forms.Timer timer2;
+        public System.Windows.Forms.PictureBox pictureBox1;
     }
 }

@@ -11,11 +11,11 @@ using System.Windows.Forms;
 
 namespace Remember
 {
-    public partial class mainForm : Form
+    public partial class MainForm : Form
     {
         SqliteConnection Conn = new SqliteConnection();
 
-        public mainForm(SqliteConnection connection)
+        public MainForm(SqliteConnection connection)
         {
             Conn = connection;
             InitializeComponent();
@@ -38,7 +38,7 @@ namespace Remember
 
                 if (reader.Read() == true)
                 {
-                    new dashboard().Show();
+                    new Dashboard().Show();
                     this.Hide();
                 }
                 else
@@ -54,7 +54,7 @@ namespace Remember
 
         private void signUpMainFormButton_Click(object sender, EventArgs e)
         {
-            new signUpForm(Conn).Show();
+            new SignUpForm(Conn).Show();
             this.Hide();
         }
 
