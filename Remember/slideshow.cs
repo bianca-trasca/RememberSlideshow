@@ -112,7 +112,7 @@ namespace Remember
             }
             if (e.KeyCode == Keys.D0)
             {
-                ChangeOpacityRate(0);
+                ChangeOpacityRate(1);
             }
             // Start/stop music
             else if (e.KeyCode == Keys.A)
