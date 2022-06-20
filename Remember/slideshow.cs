@@ -17,7 +17,7 @@ namespace Remember
         private static bool Transitioning { get; set; } = false;
         private static bool IsMusicPaused { get; set; } = true;
         private static TransitionSlideshow TransitionSlideshow { get; set; } = new TransitionSlideshow();
-        private static Background Background { get; set; } = new Background();
+        private static Background Background { get; set; }
         private static Sens TransitionSens { get; set; } = Sens.Right;
 
 
@@ -33,6 +33,7 @@ namespace Remember
             DisplayedImageIndex = 0;
             TransitionSens = Sens.Right;
 
+            Background = new Background();
             Background.Show();
 
             pictureBox1.Image = Image.FromFile(ImagesOnSlideShow[DisplayedImageIndex].ToString());
@@ -116,7 +117,7 @@ namespace Remember
             {
                 this.Hide();
                 TransitionSlideshow.Hide();
-                Background.Hide();
+                Background.Close();
 
                 if (Dashboard.Player != null)
                 {
