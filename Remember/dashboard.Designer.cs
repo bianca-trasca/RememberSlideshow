@@ -67,7 +67,7 @@
             this.browseBtn.Text = "Browse";
             this.toolTip1.SetToolTip(this.browseBtn, "Click to browse photos");
             this.browseBtn.UseVisualStyleBackColor = true;
-            this.browseBtn.Click += new System.EventHandler(this.browseBtn_Click);
+            this.browseBtn.Click += new System.EventHandler(this.BrowseBtn_Click);
             // 
             // listBox
             // 
