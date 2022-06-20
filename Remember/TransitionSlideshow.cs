@@ -24,7 +24,7 @@ namespace Remember
         public void ShowSlideshow(double opacity, int index)
         {
             Show();
-            pictureBox1.Image = Image.FromFile(Dashboard.PathToImages + ImagesOnSlideShow[index].ToString());
+            pictureBox1.Image = Image.FromFile(ImagesOnSlideShow[index].ToString());
             WindowState = FormWindowState.Maximized;
             Opacity = opacity;
             BringToFront();

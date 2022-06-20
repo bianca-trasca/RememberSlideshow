@@ -31,10 +31,11 @@ namespace Remember
         {
             ImagesOnSlideShow = Dashboard.CurrentImageList;
             DisplayedImageIndex = 0;
+            TransitionSens = Sens.Right;
 
             Background.Show();
 
-            pictureBox1.Image = Image.FromFile(Dashboard.PathToImages + ImagesOnSlideShow[DisplayedImageIndex].ToString());
+            pictureBox1.Image = Image.FromFile(ImagesOnSlideShow[DisplayedImageIndex].ToString());
             BringToFront();
         }
 
@@ -61,7 +62,7 @@ namespace Remember
                     DisplayedImageIndex--;
                 }
 
-                pictureBox1.Image = Image.FromFile(Dashboard.PathToImages + ImagesOnSlideShow[DisplayedImageIndex]);
+                pictureBox1.Image = Image.FromFile(ImagesOnSlideShow[DisplayedImageIndex]);
             }
         }
 
@@ -124,15 +125,18 @@ namespace Remember
             }
             else if (e.KeyCode == Keys.A) // Start/stop music
             {
-                if (IsMusicPaused)
+                if (Dashboard.Player != null)
                 {
-                    Dashboard.Player.Play();
-                    IsMusicPaused = false;
-                }
-                else
-                {
-                    Dashboard.Player.Stop();
-                    IsMusicPaused = true;
+                    if (IsMusicPaused)
+                    {
+                        Dashboard.Player.Play();
+                        IsMusicPaused = false;
+                    }
+                    else
+                    {
+                        Dashboard.Player.Stop();
+                        IsMusicPaused = true;
+                    }
                 }
             }
             else if (e.KeyCode == Keys.Space) // pause transition
