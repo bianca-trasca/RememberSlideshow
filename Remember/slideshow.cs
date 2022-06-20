@@ -20,6 +20,7 @@ namespace Remember
         private static Background Background { get; set; } = new Background();
         private static Sens TransitionSens { get; set; } = Sens.Right;
 
+
         public Slideshow()
         {
             InitializeComponent();
@@ -46,7 +47,7 @@ namespace Remember
                 Opacity = Math.Round(Opacity - OpacityRate, 4);
                 return;
             }
-            else
+            else // when transition is complete
             {
                 Transitioning = false;
                 timer1.Stop();
@@ -55,7 +56,7 @@ namespace Remember
                 {
                     DisplayedImageIndex++;
                 }
-                else
+                else if(TransitionSens == Sens.Left)
                 {
                     DisplayedImageIndex--;
                 }
@@ -66,8 +67,6 @@ namespace Remember
 
         private void Slideshow_KeyDown(object sender, KeyEventArgs e)
         {
-            //displayedimageindex va trebuie sa creasca sau sa scada aici in if branch uri, in functie de sensul in care se merge
-
             if (!Transitioning)
             {
                 if (e.KeyCode == Keys.D1)
@@ -186,21 +185,6 @@ namespace Remember
             }
         }
     }
-
-
-
-
-
-    // fac cumva cu doua variabile globale : SlideshowDisplayedImageIndex si TransitionSlideshowDisplayedImageIndex.
-    // SDII va ramane la fel cand se schimba sensul, doar TSDII va fi + sau - 1.
-
-    // Pun o poza neagra la inceput si la sfarsit? 
-    // TREBUIE TRATATA EXCEPTIA ASTA
-
-    // trebuie tratata exceptia care se arunca cand nu selectez nicio melodie.
-
-
-
 
 
     enum Sens { Left, Right }
