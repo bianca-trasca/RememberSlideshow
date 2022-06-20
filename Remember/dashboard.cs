@@ -30,7 +30,7 @@ namespace Remember
             toolTip1.SetToolTip(this.deleteBtn, "Deletes the selected photo");
         }
 
-        private void browseBtn_Click(object sender, EventArgs e)
+        private void BrowseBtn_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofDialog = new OpenFileDialog();
             ofDialog.Title = "Select images";
@@ -91,7 +91,8 @@ namespace Remember
         {
             if (listBox.Items.Count > 4)
             {
-                new Slideshow().Show();
+                Slideshow newSlideshow = new Slideshow();
+                newSlideshow.Show();
             }
             else
             {
