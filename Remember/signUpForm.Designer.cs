@@ -1,6 +1,6 @@
 ﻿namespace Remember
 {
-    partial class signUpForm
+    partial class SignUpForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(signUpForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SignUpForm));
             this.signUpSignUpFormLable = new System.Windows.Forms.Label();
             this.pwSignUpFormTextBox = new System.Windows.Forms.TextBox();
             this.usrSignUpFormTextBox = new System.Windows.Forms.TextBox();

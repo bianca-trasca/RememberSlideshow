@@ -11,12 +11,12 @@ using System.Windows.Forms;
 
 namespace Remember
 {
-    public partial class signUpForm : Form
+    public partial class SignUpForm : Form
     {
         SqliteConnection Conn = new SqliteConnection();
         SqliteCommand cmd = new SqliteCommand();
 
-        public signUpForm(SqliteConnection connection)
+        public SignUpForm(SqliteConnection connection)
         {
             Conn = connection;
             InitializeComponent();
@@ -76,7 +76,7 @@ namespace Remember
 
         private void backSignUpFormLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            new mainForm(Conn).Show();
+            new MainForm(Conn).Show();
             this.Hide();
         }
     }
