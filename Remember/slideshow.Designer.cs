@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace Remember
 {
-    partial class slideshow
+    partial class Slideshow
     {
         /// <summary>
         /// Required designer variable.
@@ -40,8 +40,8 @@ namespace Remember
             // 
             // timer1
             // 
-            this.timer1.Interval = 2000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timer1.Interval = 50;
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // pictureBox1
             // 
@@ -55,21 +55,17 @@ namespace Remember
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // timer2
-            // 
-            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
-            // 
-            // slideshow
+            // Slideshow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "slideshow";
+            this.Name = "Slideshow";
             this.Text = "slideshow";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.slideshow_KeyDown);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Slideshow_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 

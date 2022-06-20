@@ -1,6 +1,6 @@
 ﻿namespace Remember
 {
-    partial class mainForm
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.welcomeLable = new System.Windows.Forms.Label();
             this.throwbackLable = new System.Windows.Forms.Label();
             this.usrMainFormLable = new System.Windows.Forms.Label();

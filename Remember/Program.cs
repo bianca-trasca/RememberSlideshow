@@ -16,7 +16,7 @@ namespace Remember
             string dataSource = @"Data Source=" + pathToDB;
             SqliteConnection conn = new SqliteConnection(dataSource);
 
-            Application.Run(new mainForm(conn));
+            Application.Run(new MainForm(conn));
         }
     }
 }

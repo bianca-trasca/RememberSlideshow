@@ -8,213 +8,189 @@ using System.Windows.Forms;
 
 namespace Remember
 {
-    public partial class slideshow : Form
+    public partial class Slideshow : Form
     {
         private static List<string> ImagesOnSlideShow { get; set; } = new List<string>();
         private static int DisplayedImageIndex { get; set; } = 0;
-        private static string CurrentPhotoOnSL { get; set; }
-        private static bool OpenedSL { get; set; } = false;
-        private static Dictionary<string, int> Images { get; set; }
-        private static Dictionary<string, int> RecordedImagesAndTime { get; set; } = new Dictionary<string, int>();
+        private static double OpacityRate { get; set; } = 0.05;
+        private static bool IsTransitionPaused { get; set; } = false;
+        private static bool Transitioning { get; set; } = false;
+        private static bool IsMusicPaused { get; set; } = true;
+        private static TransitionSlideshow TransitionSlideshow { get; set; } = new TransitionSlideshow();
+        private static Background Background { get; set; } = new Background();
+        private static Sens TransitionSens { get; set; } = Sens.Right;
 
-        public slideshow()
+
+        public Slideshow()
         {
             InitializeComponent();
             StartSlideshow();
         }
 
-        public slideshow(Dictionary<string, int> images, string melody)
-        {
-            InitializeComponent();
-            StartOpenedSlideshow(images, melody);
-        }
-
         private void StartSlideshow()
         {
-            ImagesOnSlideShow = dashboard.CurrentImageList;
+            ImagesOnSlideShow = Dashboard.CurrentImageList;
             DisplayedImageIndex = 0;
-            timer1.Start();
+            TransitionSens = Sens.Right;
 
-            pictureBox1.Image = Image.FromFile(dashboard.PathToImages + ImagesOnSlideShow[0].ToString());
-            RecordSlideshow();
+            Background.Show();
+
+            pictureBox1.Image = Image.FromFile(ImagesOnSlideShow[DisplayedImageIndex].ToString());
+            BringToFront();
         }
 
-        private void StartOpenedSlideshow(Dictionary<string, int> images, string melody)
+        private void Timer1_Tick(object sender, EventArgs e)
         {
-            OpenedSL = true;
-
-            if (!melody.Equals("noMusic"))
+            // while transitioning between photos
+            if (Opacity != 0 && TransitionSlideshow.Opacity != 1)
             {
-                SoundPlayer player = new SoundPlayer(dashboard.PathToMusic + melody.Replace("_", " "));
-                dashboard.Player = player;
-                dashboard.Player.Play();
-                dashboard.Melody = melody;
+                TransitionSlideshow.Opacity = Math.Round(TransitionSlideshow.Opacity + OpacityRate, 4);
+                Opacity = Math.Round(Opacity - OpacityRate, 4);
+                return;
             }
-
-            Images = images;
-            ImagesOnSlideShow = images.Keys.ToList();
-            DisplayedImageIndex = 0;
-            timer2.Interval = images.Values.First();
-            timer2.Start();
-            pictureBox1.Image = Image.FromFile(dashboard.PathToImages + ImagesOnSlideShow[0].ToString());
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            DisplayedImageIndex++;
-
-            if (DisplayedImageIndex == ImagesOnSlideShow.Count)
+            else // when transition is complete
             {
-                pictureBox1.Image = null;
+                Transitioning = false;
                 timer1.Stop();
-            }
-            else
-            {
-                //aici
-                pictureBox1.Image = Image.FromFile(dashboard.PathToImages + ImagesOnSlideShow[DisplayedImageIndex]);
-                CurrentPhotoOnSL = ImagesOnSlideShow[DisplayedImageIndex];
-                RecordedImagesAndTime[CurrentPhotoOnSL] = timer1.Interval;
+
+                if (TransitionSens == Sens.Right)
+                {
+                    DisplayedImageIndex++;
+                }
+                else if(TransitionSens == Sens.Left)
+                {
+                    DisplayedImageIndex--;
+                }
+
+                pictureBox1.Image = Image.FromFile(ImagesOnSlideShow[DisplayedImageIndex]);
             }
         }
 
-        private void timer2_Tick(object sender, EventArgs e)
+        private void Slideshow_KeyDown(object sender, KeyEventArgs e)
         {
-            DisplayedImageIndex++;
-
-            if (DisplayedImageIndex == ImagesOnSlideShow.Count)
+            if (!Transitioning)
             {
-                pictureBox1.Image = null;
-                timer2.Stop();
+                if (e.KeyCode == Keys.D1)
+                {
+                    ChangeOpacityRate(0.1);
+                }
+                else if (e.KeyCode == Keys.D2)
+                {
+                    ChangeOpacityRate(0.05);
+                }
+                else if (e.KeyCode == Keys.D3)
+                {
+                    ChangeOpacityRate(0.025);
+                }
+                else if (e.KeyCode == Keys.D4)
+                {
+                    ChangeOpacityRate(0.0167);
+                }
+                else if (e.KeyCode == Keys.D5)
+                {
+                    ChangeOpacityRate(0.0125);
+                }
+                else if (e.KeyCode == Keys.D6)
+                {
+                    ChangeOpacityRate(0.01);
+                }
+                else if (e.KeyCode == Keys.D7)
+                {
+                    ChangeOpacityRate(0.0083);
+                }
+                else if (e.KeyCode == Keys.D8)
+                {
+                    ChangeOpacityRate(0.0071);
+                }
+                else if (e.KeyCode == Keys.D9)
+                {
+                    ChangeOpacityRate(0.0063);
+                }
+                else if (e.KeyCode == Keys.D0)
+                {
+                    ChangeOpacityRate(1);
+                }
             }
-            else
-            {
-                pictureBox1.Image = Image.FromFile(dashboard.PathToImages + ImagesOnSlideShow[DisplayedImageIndex]);
-                CurrentPhotoOnSL = ImagesOnSlideShow[DisplayedImageIndex];
-                timer2.Interval = Images[CurrentPhotoOnSL];
-            }
-        }
 
-        private void slideshow_KeyDown(object sender, KeyEventArgs e)
-        {
             if (e.KeyCode == Keys.Escape)
             {
-                this.WindowState = FormWindowState.Normal;
                 this.Hide();
-                if(dashboard.Player != null)
-                {
-                    dashboard.Player.Stop();
-                }
-                
-                if (!OpenedSL)
-                {
-                    DialogResult dr = MessageBox.Show("Would you like to save the slideshow?", 
-                        "Save slideshow!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dr == DialogResult.Yes)
-                    {
-                        WriteRecordedDataToFile();
-                    }
+                TransitionSlideshow.Hide();
+                Background.Hide();
 
-                    RecordedImagesAndTime.Clear();
+                if (Dashboard.Player != null)
+                {
+                    Dashboard.Player.Stop();
                 }
             }
-            else if (e.KeyCode == Keys.D1)
+            else if (e.KeyCode == Keys.A) // Start/stop music
             {
-                timer1.Interval = 1000;
-                foreach (string image in RecordedImagesAndTime.Keys)
+                if (Dashboard.Player != null)
                 {
-                    if (image.Equals(CurrentPhotoOnSL))
+                    if (IsMusicPaused)
                     {
-                        RecordedImagesAndTime[image] = 1000;
-                        break;
+                        Dashboard.Player.Play();
+                        IsMusicPaused = false;
+                    }
+                    else
+                    {
+                        Dashboard.Player.Stop();
+                        IsMusicPaused = true;
                     }
                 }
             }
-            else if (e.KeyCode == Keys.D2)
+            else if (e.KeyCode == Keys.Space) // pause transition
             {
-                timer1.Interval = 2000;
-                foreach (string image in RecordedImagesAndTime.Keys)
+                if (IsTransitionPaused)
                 {
-                    if (image.Equals(CurrentPhotoOnSL))
-                    {
-                        RecordedImagesAndTime[image] = 2000;
-                        break;
-                    }
-                }
-            }
-            else if (e.KeyCode == Keys.D3)
-            {
-                timer1.Interval = 3000;
-                foreach (string image in RecordedImagesAndTime.Keys)
-                {
-                    if (image.Equals(CurrentPhotoOnSL))
-                    {
-                        RecordedImagesAndTime[image] = 3000;
-                        break;
-                    }
-                }
-            }
-            else if (e.KeyCode == Keys.D4)
-            {
-                timer1.Interval = 4000;
-                foreach (string image in RecordedImagesAndTime.Keys)
-                {
-                    if (image.Equals(CurrentPhotoOnSL))
-                    {
-                        RecordedImagesAndTime[image] = 4000;
-                        break;
-                    }
-                }
-            }
-            else if (e.KeyCode == Keys.D5)
-            {
-                timer1.Interval = 5000;
-                foreach (string image in RecordedImagesAndTime.Keys)
-                {
-                    if (image.Equals(CurrentPhotoOnSL))
-                    {
-                        RecordedImagesAndTime[image] = 5000;
-                        break;
-                    }
-                }
-            }
-        }
-
-        private void RecordSlideshow()
-        {
-            foreach (string image in ImagesOnSlideShow)
-            {
-                RecordedImagesAndTime.Add(image, 2000);
-            }
-        }
-
-        private void WriteRecordedDataToFile()
-        {
-            SaveFileDialog sfDialog = new SaveFileDialog();
-            sfDialog.Title = "Save slideshow";
-            sfDialog.InitialDirectory = dashboard.PathToSlideshows;
-
-            DialogResult dr = sfDialog.ShowDialog();
-
-            if (dr == DialogResult.OK)
-            {
-                StreamWriter sr = new StreamWriter(sfDialog.FileName);
-
-                if (dashboard.Melody != null)
-                {
-                    sr.Write(dashboard.Melody.Replace(" ", "_"));
+                    timer1.Start();
+                    IsTransitionPaused = false;
                 }
                 else
                 {
-                    sr.Write("noMusic");
-                }
-                
-                foreach (string image in RecordedImagesAndTime.Keys)
-                {
-                    sr.Write(" " + image + " " + RecordedImagesAndTime[image]);
-                }
+                    timer1.Stop();
+                    IsTransitionPaused = true;
 
-                sr.Close();
+                }
+            }
+            else if (e.KeyCode == Keys.Right)
+            {
+                TransitionSens = Sens.Right;
+            }
+            else if (e.KeyCode == Keys.Left)
+            {
+                TransitionSens = Sens.Left;
+            }
+        }
+
+        private void ChangeOpacityRate(double opacityRate)
+        {
+            Opacity = 1;
+
+            if ((TransitionSens == Sens.Right && DisplayedImageIndex == ImagesOnSlideShow.Count() - 1) || (TransitionSens == Sens.Left && DisplayedImageIndex == 0))
+            {
+                return;
+            }
+            else
+            {
+                Transitioning = true;
+
+                if (TransitionSens == Sens.Right)
+                {
+                    TransitionSlideshow.ShowSlideshow(0, DisplayedImageIndex + 1);
+                }
+                else
+                {
+                    TransitionSlideshow.ShowSlideshow(0, DisplayedImageIndex - 1);
+                }
+                BringToFront();
+                OpacityRate = opacityRate;
+                timer1.Start();
             }
         }
     }
+
+
+    enum Sens { Left, Right }
+
 }
