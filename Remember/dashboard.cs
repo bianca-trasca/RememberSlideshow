@@ -21,7 +21,7 @@ namespace Remember
         {
             InitializeComponent();
             AddVersionNumber();
-            //CheckForUpdates();
+            CheckForUpdates();
         }
 
         private async Task CheckForUpdates()
