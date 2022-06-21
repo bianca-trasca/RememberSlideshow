@@ -117,9 +117,13 @@
             // 
             this.showPwMainFormCheckBox.AutoSize = true;
             this.showPwMainFormCheckBox.BackColor = System.Drawing.Color.White;
+            this.showPwMainFormCheckBox.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.showPwMainFormCheckBox.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.showPwMainFormCheckBox.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.showPwMainFormCheckBox.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.showPwMainFormCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.showPwMainFormCheckBox.Font = new System.Drawing.Font("Verdana", 7F);
-            this.showPwMainFormCheckBox.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.showPwMainFormCheckBox.ForeColor = System.Drawing.Color.Black;
             this.showPwMainFormCheckBox.Location = new System.Drawing.Point(471, 295);
             this.showPwMainFormCheckBox.Name = "showPwMainFormCheckBox";
             this.showPwMainFormCheckBox.Size = new System.Drawing.Size(12, 11);
@@ -169,14 +173,14 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Verdana", 8F);
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label1.Location = new System.Drawing.Point(489, 293);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(96, 13);
             this.label1.TabIndex = 10;
             this.label1.Text = "Show password";
             // 
-            // mainForm
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -197,7 +201,7 @@
             this.Controls.Add(this.welcomeLable);
             this.Font = new System.Drawing.Font("SimSun-ExtB", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "mainForm";
+            this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Remember Slideshow";
             this.TransparencyKey = System.Drawing.Color.Transparent;

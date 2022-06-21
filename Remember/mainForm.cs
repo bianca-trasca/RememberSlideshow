@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,18 @@ namespace Remember
         {
             Conn = connection;
             InitializeComponent();
+            AddVersionNumber();
         }
 
         SqliteCommand cmd = new SqliteCommand();
+
+        private void AddVersionNumber()
+        {
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
+
+            Text += $"  v.{fileVersionInfo.FileVersion}";
+        }
 
         private void logInMainFormButton_Click(object sender, EventArgs e)
         {
