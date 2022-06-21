@@ -18,7 +18,7 @@ namespace Remember
         private static bool IsMusicPaused { get; set; } = true;
         private static TransitionSlideshow TransitionSlideshow { get; set; } = new TransitionSlideshow();
         private static Background Background { get; set; }
-        private static Sens TransitionSens { get; set; } = Sens.Right;
+        private static Direction TransitionDirection { get; set; } = Direction.Right;
 
 
         public Slideshow()
@@ -31,7 +31,7 @@ namespace Remember
         {
             ImagesOnSlideShow = Dashboard.CurrentImageList;
             DisplayedImageIndex = 0;
-            TransitionSens = Sens.Right;
+            TransitionDirection = Direction.Right;
 
             Background = new Background();
             Background.Show();
@@ -54,11 +54,11 @@ namespace Remember
                 Transitioning = false;
                 timer1.Stop();
 
-                if (TransitionSens == Sens.Right)
+                if (TransitionDirection == Direction.Right)
                 {
                     DisplayedImageIndex++;
                 }
-                else if(TransitionSens == Sens.Left)
+                else if(TransitionDirection == Direction.Left)
                 {
                     DisplayedImageIndex--;
                 }
@@ -156,11 +156,11 @@ namespace Remember
             }
             else if (e.KeyCode == Keys.Right)
             {
-                TransitionSens = Sens.Right;
+                TransitionDirection = Direction.Right;
             }
             else if (e.KeyCode == Keys.Left)
             {
-                TransitionSens = Sens.Left;
+                TransitionDirection = Direction.Left;
             }
         }
 
@@ -168,7 +168,8 @@ namespace Remember
         {
             Opacity = 1;
 
-            if ((TransitionSens == Sens.Right && DisplayedImageIndex == ImagesOnSlideShow.Count() - 1) || (TransitionSens == Sens.Left && DisplayedImageIndex == 0))
+            if ((TransitionDirection == Direction.Right && DisplayedImageIndex == ImagesOnSlideShow.Count() - 1)
+                || (TransitionDirection == Direction.Left && DisplayedImageIndex == 0))
             {
                 return;
             }
@@ -176,7 +177,7 @@ namespace Remember
             {
                 Transitioning = true;
 
-                if (TransitionSens == Sens.Right)
+                if (TransitionDirection == Direction.Right)
                 {
                     TransitionSlideshow.ShowSlideshow(0, DisplayedImageIndex + 1);
                 }
@@ -192,6 +193,6 @@ namespace Remember
     }
 
 
-    enum Sens { Left, Right }
+    enum Direction { Left, Right }
 
 }
