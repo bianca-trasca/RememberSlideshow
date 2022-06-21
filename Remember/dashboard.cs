@@ -21,7 +21,7 @@ namespace Remember
         {
             InitializeComponent();
             AddVersionNumber();
-            CheckForUpdates();
+            //CheckForUpdates();
         }
 
         private async Task CheckForUpdates()
@@ -189,11 +189,6 @@ namespace Remember
         {
             Dashboard.Melody = null;
             musicLbl.Text = null;
-        }
-
-        private void Dashboard_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
         }
     }
 }
