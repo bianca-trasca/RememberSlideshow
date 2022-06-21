@@ -16,7 +16,7 @@ namespace Remember
         private static bool IsTransitionPaused { get; set; } = false;
         private static bool Transitioning { get; set; } = false;
         private static bool IsMusicPaused { get; set; } = true;
-        private static TransitionSlideshow TransitionSlideshow { get; set; } = new TransitionSlideshow();
+        public static TransitionSlideshow TransitionSlideshow { get; set; } = new TransitionSlideshow();
         private static Background Background { get; set; }
         private static Direction TransitionDirection { get; set; } = Direction.Right;
 
@@ -116,7 +116,7 @@ namespace Remember
             if (e.KeyCode == Keys.Escape)
             {
                 this.Hide();
-                TransitionSlideshow.Hide();
+                TransitionSlideshow.Close();
                 Background.Close();
 
                 if (Dashboard.Player != null)

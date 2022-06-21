@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Squirrel;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Media;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Remember
@@ -18,6 +20,24 @@ namespace Remember
         public Dashboard()
         {
             InitializeComponent();
+            AddVersionNumber();
+            CheckForUpdates();
+        }
+
+        private async Task CheckForUpdates()
+        {
+            using (var manager = new UpdateManager(@"D:\RememberAppReleases"))
+            {
+                await manager.UpdateApp();
+            }
+        }
+
+        private void AddVersionNumber()
+        {
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
+
+            Text += $"  v.{fileVersionInfo.FileVersion}";
         }
 
         private void Dashboard_Load(object sender, EventArgs e)
@@ -169,6 +189,11 @@ namespace Remember
         {
             Dashboard.Melody = null;
             musicLbl.Text = null;
+        }
+
+        private void Dashboard_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
         }
     }
 }
