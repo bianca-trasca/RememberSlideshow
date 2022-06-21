@@ -16,12 +16,13 @@ namespace Remember
         private int LastDeletedIndex { get; set; }
         public static SoundPlayer Player { get; set; }
         public static string Melody { get; set; }
+        private static Slideshow Slideshow { get; set; }
 
         public Dashboard()
         {
             InitializeComponent();
             AddVersionNumber();
-            //CheckForUpdates();
+            CheckForUpdates();
         }
 
         private async Task CheckForUpdates()
@@ -111,8 +112,8 @@ namespace Remember
         {
             if (listBox.Items.Count > 4)
             {
-                Slideshow newSlideshow = new Slideshow();
-                newSlideshow.Show();
+                Slideshow = new Slideshow();
+                Slideshow.Show();
             }
             else
             {
@@ -189,6 +190,15 @@ namespace Remember
         {
             Dashboard.Melody = null;
             musicLbl.Text = null;
+        }
+
+        private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if(Slideshow != null && Slideshow.TransitionSlideshow != null)
+            {
+                Slideshow.TransitionSlideshow.Close();
+                Slideshow.Close();
+            }
         }
     }
 }
