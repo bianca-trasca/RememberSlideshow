@@ -190,10 +190,5 @@ namespace Remember
             Dashboard.Melody = null;
             musicLbl.Text = null;
         }
-
-        private void Dashboard_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
-        }
     }
 }
