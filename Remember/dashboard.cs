@@ -22,7 +22,16 @@ namespace Remember
         {
             InitializeComponent();
             AddVersionNumber();
-            CheckForUpdates();
+        }
+
+        private async void AddVersionNumber()
+        {
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
+
+            Text += $"  v.{fileVersionInfo.FileVersion}";
+
+            await CheckForUpdates();
         }
 
         private async Task CheckForUpdates()
@@ -31,14 +40,6 @@ namespace Remember
             {
                 await manager.UpdateApp();
             }
-        }
-
-        private void AddVersionNumber()
-        {
-            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
-            FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
-
-            Text += $"  v.{fileVersionInfo.FileVersion}";
         }
 
         private void Dashboard_Load(object sender, EventArgs e)
@@ -53,11 +54,13 @@ namespace Remember
 
         private void BrowseBtn_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofDialog = new OpenFileDialog();
-            ofDialog.Title = "Select images";
-            ofDialog.Multiselect = true;
-            ofDialog.Filter = "JPG|*.jpg|JPEG|*.jpeg|PNG|*.png";
-            ofDialog.InitialDirectory = @"C:";
+            OpenFileDialog ofDialog = new OpenFileDialog
+            {
+                Title = "Select images",
+                Multiselect = true,
+                Filter = "JPG|*.jpg|JPEG|*.jpeg|PNG|*.png",
+                InitialDirectory = @"C:"
+            };
 
             DialogResult dr = ofDialog.ShowDialog();
 
@@ -173,10 +176,12 @@ namespace Remember
 
         private void MusicBtn_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "wav files (*.wav)|*.wav|All files (*.*)|*.*";
-            openFileDialog.InitialDirectory = @"C:";
-            openFileDialog.Title = "Select music";
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "wav files (*.wav)|*.wav|All files (*.*)|*.*",
+                InitialDirectory = @"C:",
+                Title = "Select music"
+            };
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -194,10 +199,13 @@ namespace Remember
 
         private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if(Slideshow != null && Slideshow.TransitionSlideshow != null)
+            if(Slideshow != null)
             {
-                Slideshow.TransitionSlideshow.Close();
-                Slideshow.Close();
+                Slideshow.Dispose();
+                if (Slideshow.TransitionSlideshow != null)
+                {
+                    Slideshow.TransitionSlideshow.Dispose();
+                }
             }
         }
     }

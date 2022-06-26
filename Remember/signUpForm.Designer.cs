@@ -138,7 +138,7 @@
             this.showPwSignUpFormCheckBox.Text = "Show Password";
             this.showPwSignUpFormCheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.showPwSignUpFormCheckBox.UseVisualStyleBackColor = false;
-            this.showPwSignUpFormCheckBox.CheckedChanged += new System.EventHandler(this.showPwSignUpFormCheckBox_CheckedChanged);
+            this.showPwSignUpFormCheckBox.CheckedChanged += new System.EventHandler(this.ShowPwSignUpFormCheckBox_CheckedChanged);
             // 
             // signUpSignUpFormButton
             // 
@@ -150,7 +150,7 @@
             this.signUpSignUpFormButton.TabIndex = 13;
             this.signUpSignUpFormButton.Text = "Sign up";
             this.signUpSignUpFormButton.UseVisualStyleBackColor = false;
-            this.signUpSignUpFormButton.Click += new System.EventHandler(this.signUpSignUpFormButton_Click);
+            this.signUpSignUpFormButton.Click += new System.EventHandler(this.SignUpSignUpFormButton_Click);
             // 
             // backSignUpFormLabel
             // 
@@ -164,7 +164,7 @@
             this.backSignUpFormLabel.TabIndex = 14;
             this.backSignUpFormLabel.TabStop = true;
             this.backSignUpFormLabel.Text = "Go back to Login page";
-            this.backSignUpFormLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.backSignUpFormLabel_LinkClicked);
+            this.backSignUpFormLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.BackSignUpFormLabel_LinkClicked);
             // 
             // signUpForm
             // 

@@ -16,7 +16,7 @@ namespace Remember
         private static bool IsTransitionPaused { get; set; } = false;
         private static bool Transitioning { get; set; } = false;
         private static bool IsMusicPaused { get; set; } = true;
-        public static TransitionSlideshow TransitionSlideshow { get; set; } = new TransitionSlideshow();
+        public static TransitionSlideshow TransitionSlideshow { get; set; }
         private static Background Background { get; set; }
         private static Direction TransitionDirection { get; set; } = Direction.Right;
 
@@ -35,6 +35,9 @@ namespace Remember
 
             Background = new Background();
             Background.Show();
+
+            TransitionSlideshow = new TransitionSlideshow();
+            TransitionSlideshow.ShowSlideshow(0,1);
 
             pictureBox1.Image = Image.FromFile(ImagesOnSlideShow[DisplayedImageIndex].ToString());
             BringToFront();

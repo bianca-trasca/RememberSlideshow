@@ -33,7 +33,7 @@ namespace Remember
             Text += $"  v.{fileVersionInfo.FileVersion}";
         }
 
-        private void logInMainFormButton_Click(object sender, EventArgs e)
+        private void LogInMainFormButton_Click(object sender, EventArgs e)
         {
             if (usrMainFormTextBox.Text.Equals("") || pwMainFormTextBox.Text.Equals(""))
             {
@@ -62,13 +62,13 @@ namespace Remember
             }
         }
 
-        private void signUpMainFormButton_Click(object sender, EventArgs e)
+        private void SignUpMainFormButton_Click(object sender, EventArgs e)
         {
             new SignUpForm(Conn).Show();
             this.Hide();
         }
 
-        private void showPwMainFormCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void ShowPwMainFormCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (showPwMainFormCheckBox.Checked)
             {

@@ -22,7 +22,7 @@ namespace Remember
             InitializeComponent();
         }
 
-        private void showPwSignUpFormCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void ShowPwSignUpFormCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (showPwSignUpFormCheckBox.Checked)
             {
@@ -36,7 +36,7 @@ namespace Remember
             }
         }
 
-        private void signUpSignUpFormButton_Click(object sender, EventArgs e)
+        private void SignUpSignUpFormButton_Click(object sender, EventArgs e)
         {
             if (usrSignUpFormTextBox.Text.Equals("") || pwSignUpFormTextBox.Text.Equals(""))
             {
@@ -74,10 +74,10 @@ namespace Remember
             }
         }
 
-        private void backSignUpFormLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void BackSignUpFormLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             new MainForm(Conn).Show();
-            this.Hide();
+            this.Dispose();
         }
     }
 }
