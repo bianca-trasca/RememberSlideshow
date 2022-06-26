@@ -116,7 +116,7 @@ namespace Remember
             if (e.KeyCode == Keys.Escape)
             {
                 this.Hide();
-                TransitionSlideshow.Close();
+                TransitionSlideshow.Hide();
                 Background.Close();
 
                 if (Dashboard.Player != null)
